@@ -1,0 +1,81 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AdvisorBookingServiceMasterPage.master.cs"
+    Inherits="AdvisorBookingServiceMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+    <title>Advisor Booking Service</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+    <link href="Styles/basic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="page">
+        <div id="page-top">
+            <div id="page-bottom">
+                <div id="header">
+                    <div id="header-info">
+                        <h1>
+                            <a href="#">Advisor Booking Service</a></h1>
+                        <div class="description">
+                            Online Booking Service</div>
+                    </div>
+                    <div id="header-menu">
+                        <ul>
+                            <li><a href="Default.aspx">Home</a></li>
+                            <li class="page_item"><a href="Advisor.aspx">Book An Appointment</a></li>
+                            <li class="page_item"><a href="#">About</a></li>
+                              <li class="page_item"><a href="View.aspx">View Database</a></li>
+                          <%--  <li class="page_item"><a href="ContactUs.aspx">Contact</a></li>--%>
+                        </ul>
+                    </div>
+                </div>
+                <div id="main">
+                    <div id="sidebar">
+                        <div id="sidebar-left">
+                            <div class="sidebar-box">
+                                <h3>
+                                    Pages</h3>
+                                <ul>
+                                    <li class="page_item"><a href="Default.aspx">Home</a></li>
+                                    <li class="page_item"><a href="Advisor.aspx">Book An Appointment</a></li>
+                                     <li class="page_item"><a href="CancelAppointment.aspx">Cancellation Page</a></li>
+
+
+                                     <li class="page_item"><a href="BookSchedules2.aspx">Book Schedule Page</a></li>
+                                     <li class="page_item"><a href="AdvisorSchedule.aspx">Advisor Schedule Maintenance</a></li>
+                                                                          
+                                     <li class="page_item"><a href="#">About</a></li>
+                                    <li class="page_item"><a href="ContactUs.aspx">Contact</a></li>
+                                </ul>
+                            </div>
+                            <div class="sidebar-box">
+                                <h3>
+                                    Registration</h3>
+                                <ul>
+                                    <li class="page_item"><a href="StudentRegistration.aspx">New Student Register Here</a></li>
+                                    <li class="page_item"><a href="AdvisorRegistration.aspx">Advisor Registration</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="content">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+
+                    </div>
+                    <div class="clear">
+                    </div>
+
+                    <br /><br />
+                    
+                                        <div id="footer">
+                </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

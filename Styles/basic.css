@@ -1,0 +1,15 @@
+﻿body, 
+input, 
+select                  { font-family: Verdana, Arial; font-size: 8pt;
+    margin-top: 0px;
+}
+
+.message                { color: #cd0e0e; font-weight: bold; }
+
+.headerStyle            { background-color: #4f5e74; color: #fff; }
+.rowStyle               { background-color: #e9ecef; }
+.alternatingRowStyle    { background-color: #fff; }
+.footerStyle            { background-color: #4f5e74; }
+.pagerStyle             { background-color: #4f5e74; color: #fff; }
+.pagerStyle td table    { margin: auto; }
+

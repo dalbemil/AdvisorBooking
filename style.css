@@ -1,0 +1,585 @@
+/*
+Theme Name: Furnoffice
+Theme URI: http://wpjunction.com
+Description: A theme by <a href="http://wpjunction.com">Website Designs</a>.
+Version: 1.0
+Author: HPA
+Author URI: http://wpjunction.com 
+*/
+
+
+/* General */
+
+body {
+	margin: 0;
+	background: #232a34;
+}
+
+h1, h2, h3, h4 {
+	margin: 0;
+}
+
+img {
+	border: 0;
+}
+
+.clear {
+	clear: both;
+	height: 0;
+	overflow: hidden;
+}
+
+
+/* Page */
+
+#page {
+	margin: 0 auto;
+	width: 1004px;
+	background: url("images/page.jpg") repeat-y;
+}
+
+#page-top {
+	width: 1004px;
+	background: url("images/page_top.jpg") no-repeat;
+}
+
+#page-bottom {
+	width: 1004px;
+	min-height: 555px;
+	background: url("images/page_bottom.png") no-repeat left bottom;
+}
+
+
+/* Header */
+
+#header {
+	width: 1004px;
+	height: 394px;
+	position: relative;
+}
+
+	/* Header - Info */
+	
+	#header #header-info {
+		position: absolute;
+		top: 293px;
+		left: 20px;
+	}
+	
+	#header #header-info h1 {
+		color: #29303b;
+		font: normal 36px Verdana;
+		padding-bottom: 3px;
+	}
+	
+	#header #header-info h1 a {
+		color: #29303b;
+		text-decoration: none;
+	}
+	
+	#header #header-info .description {
+		color: #3b4802;
+		font: normal 18px Verdana;
+	}
+	
+	/* Header - Menu */
+	
+	#header #header-menu {
+		position: absolute;
+		top: 13px;
+		left: 24px;
+		width: 955px;
+		height: 38px;
+	}
+	
+	#header #header-menu ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		width: 955px;
+		height: 38px;
+	}
+	
+	#header #header-menu ul li {
+		float: left;
+		height: 38px;
+		font: normal 14px/38px Georgia, Verdana;
+		color: #d1d1d3;
+		margin-right: 25px;
+	}
+	
+	#header #header-menu ul li a {
+		color: #d1d1d3;
+		text-decoration: none;
+	}
+	
+	#header #header-menu ul li a:hover {
+		color: #b9c966;
+	}
+	
+		/* Header - Menu - Submenu */
+		
+		#header #header-menu ul li ul {
+			display: none;
+		}
+	
+	/* Header - Search */
+	
+	#header #header-search {
+		position: absolute;
+		top: 410px;
+		left: 35px;
+		width: 250px;
+		height: 23px;
+	}
+	
+	#header #header-search #searchform {
+		margin: 0;
+		padding: 0;
+		width: 250px;
+		height: 23px;
+	}
+	
+	#header #header-search #s {
+		width: 250px;
+		height: 17px;
+		border: 0;
+		padding: 3px 0;
+		font: normal 14px Georgia, Verdana;
+		color: #11151b;
+		background: transparent;
+		float: left;
+	}
+	
+	#header #header-search #searchsubmit {
+		background: transparent;
+		border: none;
+		width: 0;
+		height: 23px;
+		padding: 0;
+		float: right;
+		display: none;
+	}
+	
+	/* Header - Feed */
+	
+	#header #header-feed {
+		position: absolute;
+		top: 388px;
+		left: 289px;
+		width: 66px;
+		height: 66px;
+	}
+
+
+/* Main */
+
+#main {
+	width: 1004px;
+}
+
+	/* Main - Sidebar */
+	
+	#sidebar {
+		float: left;
+		width: 190px;
+		font: normal 12px/18px Verdana;
+		color: #8b919b;
+		margin-top: 68px;
+		padding: 0 31px 0 19px;
+	}
+	
+	#sidebar a {
+		color: #9cb72f;
+		text-decoration: none;
+	}
+	
+	#sidebar a:hover {
+		text-decoration: underline;
+	}
+	
+	/* Main - Sidebar - Sides */
+	
+	#sidebar #sidebar-left {
+		float: left;
+		width: 168px;
+	}
+	
+	#sidebar #sidebar-right {
+		float: right;
+		width: 168px;
+	}
+	
+	/* Main - Sidebar - Boxes */
+	
+	#sidebar .sidebar-box {
+		width: 168px;
+		margin-bottom: 10px;
+	}
+	
+		/* Sidebar - Titles */
+		
+		#sidebar h3 {
+			width: 160px;
+			height: 29px;
+			padding-left: 8px;
+			font: normal 14px/29px Arial, Verdana;
+			color: #2c333f;
+			margin-bottom: 5px;
+			background: url("images/sidebar_title.gif") no-repeat;
+		}
+		
+		/* Sidebar - Menus */
+		
+		#sidebar ul {
+			margin: 0;
+			padding: 0 0 0 5px;
+			list-style-type: none;
+		}
+		
+		#sidebar ul li {
+			color: #8b919b;
+			font: normal 12px/24px Verdana;
+			background: url("images/sidebar_menu.gif") no-repeat;
+			padding-left: 12px;
+		}
+		
+		#sidebar ul li a {
+			color: #8b919b;
+			text-decoration: none;
+		}
+		
+		#sidebar ul li a:hover {
+			text-decoration: underline;
+		}
+		
+			/* Sidebar - Menus - Submenus */
+			
+			#sidebar ul li ul {
+				padding: 0;
+			}
+		
+		/* Sidebar - Forms */
+		
+		#sidebar #searchform {
+			margin: 0;
+			padding: 10px 0;
+			text-align: center;
+		}
+		
+		#sidebar #searchform #s {
+			width: 140px;
+		}
+		
+		/* Sidebar - Tables */
+		
+		#sidebar #calendar_wrap {
+			width: 145px;
+			margin: 0 auto;
+		}
+		
+		#sidebar #calendar_wrap table {
+			width: 145px;
+		}
+		
+		#sidebar #calendar_wrap caption {
+			margin: 0 auto;
+			font-weight: bold;
+		}
+		
+		#sidebar #calendar_wrap tbody {
+			text-align: right;
+		}
+		
+		#sidebar #calendar_wrap tfoot #next {
+			text-align: right;
+		}
+		
+		#sidebar #calendar_wrap #today {
+			font-weight: bold;
+		}
+		
+		/* Sidebar - Texts */
+		
+		#sidebar .textwidget {
+			padding: 0 1px;
+		}
+	
+	/* Main - Content */
+	
+	#content {
+		float: left;
+		width: 759px;
+    height: 29px;
+}
+	
+	/* Main - Content - Post */
+	
+	#content .post {
+		float: left;
+		margin-bottom: 0px;
+		width: 709px;
+    height: 29px;
+}
+	
+		/* Post - Title */
+		
+		#content .post .post-title {
+			width: 750px;
+			height: 32px;
+			color: #8da3a8;
+			font: normal 12px Verdana;
+			margin-bottom: 8px;
+			background: url("images/post_title.gif") repeat-x left bottom;
+		}
+		
+			#content .post .post-title-page {
+				height: 36px;
+			}
+		
+		#content .post .post-title a {
+			color: #8da3a8;
+			text-decoration: none;
+		}
+		
+		#content .post .post-title a:hover {
+			text-decoration: underline;
+		}
+		
+		#content .post .post-title .post-date {
+			float: left;
+			width: 50px;
+			height: 50px;
+			padding: 0 4px 3px 0;
+			margin-right: 9px;
+			color: #c1c4c6;
+			font: normal 24px/34px Verdana;
+			text-align: center;
+			background: url("images/post_date.gif") no-repeat;
+		}
+		
+		#content .post .post-title .post-date span {
+			display: block;
+			text-transform: uppercase;
+			font-size: 10px;
+			color: #71808e;
+			line-height: 16px;
+		}
+		
+		#content .post .post-title h2 {
+			color: #9cb72f;
+			font: normal 24px/32px Verdana;
+		}
+		
+		#content .post .post-title h2 a {
+			color: #9cb72f;
+			text-decoration: none;
+		}
+		
+		#content .post .post-title h2 a:hover {
+			text-decoration: underline;
+		}
+		
+		#content .post .post-title .post-title-info {
+			height: 20px;
+			line-height: 20px;
+			overflow: hidden;
+		}
+		
+			#content .post .post-title .post-title-info .post-title-author {
+				float: left;
+				background: url("images/icon_author.gif") no-repeat left center;
+				padding: 0 10px 0 20px;
+				height: 20px;
+				line-height: 20px;
+			}
+			
+			#content .post .post-title .post-title-info .post-title-category {
+				float: left;
+				background: url("images/icon_category.gif") no-repeat left center;
+				padding: 0 10px 0 20px;
+				height: 20px;
+				line-height: 20px;
+			}
+			
+			#content .post .post-title .post-title-info .post-title-comments {
+				float: left;
+				/*background: url("images/icon_comments.gif") no-repeat left center;*/
+				padding: 0 0 0 20px;
+				height: 20px;
+				line-height: 20px;
+			}
+		
+		/* Post - Entry */
+		
+			#content .post .post-entry-top {
+				background: url("images/post_entry_top.jpg") no-repeat;
+				width: 759px;
+			}
+			
+		#content .post .post-entry {
+			font: normal 12px/20px Arial, Verdana;
+			color: #797f88;
+			width: 759px;
+			background: url("images/post_entry.jpg") repeat-y;
+		}
+		
+		
+			
+			#content .post .post-entry-bottom {
+				background: url("images/post_entry_bottom.jpg") no-repeat left bottom;
+				padding:  0px  0px 9px 6px;
+				width: 759px;
+			}
+		
+		#content .post .post-entry a {
+			color: #9cb72f;
+			text-decoration: none;
+		}
+		
+		#content .post .post-entry a:hover {
+			text-decoration: underline;
+		}
+		
+		#content .post .post-entry a.more-link {
+			font-weight: bold;
+		}
+		
+		#content .post .post-entry blockquote {
+			border-left: 10px solid #1b2129;
+			margin: 0px 30px;
+			padding-left: 15px;
+		}
+		
+		/* Post - Subtitle */
+		
+		#content .post h3 {
+			margin: 20px 0 5px 0;
+			color: #9cb72f;
+			font: normal 18px Verdana;
+		}
+		
+		/* Post - Comments */
+		
+		#content .post .comments {
+			font: normal 12px/20px Arial, Verdana;
+			color: #797f88;
+			width: 584px;
+		}
+		
+		#content .post .comments ol {
+			margin: 10px 0;
+			padding-left: 25px;
+		}
+		
+		#content .post .comments ol li {
+			padding: 5px;
+		}
+		
+		#content .post .comments ol li a {
+			color: #9cb72f;
+			text-decoration: none;
+		}
+		
+		#content .post .comments ol li a:hover {
+			text-decoration: underline;
+		}
+		
+		#content .post .comments ol li.alt {
+			background: #1b2129;
+		}
+		
+		#content .post .comments ol li cite {
+			color: #797f88;
+			font-style: normal;
+			font-weight: bold;
+		}
+		
+		#content .post .comments ol li cite a {
+			color: #797f88;
+			text-decoration: none;
+		}
+		
+		#content .post .comments ol li cite a:hover {
+			text-decoration: underline;
+		}
+		
+		#content .post .comments ol li .commentmetadata a {
+			color: #9cb72f;
+			text-decoration: none;
+		}
+		
+		#content .post .comments ol li .commentmetadata a:hover {
+			text-decoration: underline;
+		}
+		
+		/* Post - Comment Form */
+		
+		#content .post #commentform {
+			font: normal 12px/20px Arial, Verdana;
+			color: #797f88;
+			width: 759px;
+			padding-left: 25px;
+			margin: 0;
+		}
+		
+		#content .post #commentform a {
+			color: #9cb72f;
+			text-decoration: none;
+		}
+		
+		#content .post #commentform a:hover {
+			text-decoration: underline;
+		}
+	
+	/* Main - Content - Navigation */
+	
+	#content .navigation {
+		color: #9cb72f;
+		float: left;
+		width: 799px;
+	}
+	
+	#content .navigation a {
+		font: bold 12px Arial, Verdana;
+		color: #9cb72f;
+		text-decoration: none;
+		margin-bottom: 20px;
+	}
+	
+	#content .navigation a:hover {
+		text-decoration: underline;
+	}
+	
+		#content .navigation .navigation-previous {
+			float: left;
+		}
+		
+		#content .navigation .navigation-next {
+			float: right;
+		}
+
+
+/* Footer */
+
+#footer {
+	width: 590px;
+	height: 36px;
+	padding: 5px 17px 37px 397px;
+	color: #4c576a;
+	font: normal 12px/36px Arial, Verdana;
+}
+
+#footer a {
+	color: #4c576a;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	text-decoration: underline;
+}
+
+.wt {
+	color: #4c576a;
+text-decoration: none;
+}

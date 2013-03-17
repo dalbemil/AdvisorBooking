@@ -1,0 +1,79 @@
+﻿body, input
+{
+    font-family: Verdana, Arial;
+    font-size: 8pt;
+}
+
+.ssHeader
+{
+    height: 10px;
+    background: #d9eaff;
+    background-image: url(../img/bar.gif);
+    border: solid 1px buttonshadow;
+    color: #4d4d4d;
+}
+
+.ssHeaderSelected
+{
+    background: #ffda82;
+    color: #4d4d4d;
+    border: solid 1px darkorange;   
+}
+
+.ssRowLabel
+{
+    background: #d9eaff;
+    width: 18px;
+    color: #4d4d4d;
+    font-size: 9pt;
+    
+    border-top-width: 0px;
+    border-right-width: 1px;
+    border-right-style: Solid;
+    border-right-color: buttonshadow;
+    border-left-width: 1px;
+    border-left-style: Solid;
+    border-left-color: buttonshadow;
+    border-bottom-width: 1px;
+    border-bottom-color: buttonshadow;
+    border-bottom-style: Solid;
+}
+
+.ssRowLabelSelected
+{
+    background: #ffda82;
+    color: #4d4d4d;
+    border: solid 1px darkorange;
+}
+
+.ssCell
+{
+    height: 9px;
+    width: 60px;    
+    white-space: nowrap; 
+    overflow: hidden;
+    padding: 0px 1px 0px 1px;
+    
+    border-top-width: 0px;    
+    border-right-width: 1px;
+    border-right-style: Solid;
+    border-right-color: buttonshadow;
+    border-left-width: 0px;
+    border-bottom-width: 1px;
+    border-bottom-color: buttonshadow;
+    border-bottom-style: Solid;    
+}
+
+.ssCellSelected
+{
+    height: 8px;    
+    border: solid 2px #000000;   
+    padding: 0px 0px 0px 0px;
+}
+
+.ssTextBox
+{
+    font-size: 9pt;
+    width: 58px;    
+    border: none 0px;
+}
