@@ -40,7 +40,7 @@
                                     <li class="page_item"><a href="Default.aspx">Home</a></li>
                                     <li class="page_item"><a href="Advisor.aspx">Book An Appointment</a></li>
                                      <li class="page_item"><a href="CancelAppointment.aspx">Cancellation Page</a></li>
-
+                                             <li class="page_item"><a href="ViewStudentAppointment.aspx"> ViewStudentAppointment</a></li>
 
                                      <li class="page_item"><a href="BookSchedules2.aspx">Book Schedule Page</a></li>
                                      <li class="page_item"><a href="AdvisorSchedule.aspx">Advisor Schedule Maintenance</a></li>
