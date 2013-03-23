@@ -296,7 +296,7 @@ public class ronUtil2
             for (int i = 0; i < slots.Length; i++)
             {
                 if (slots[i] != DateTime.Now)
-                { available[counter] = slots[i]; counter++; }
+                { try { available[counter] = slots[i]; counter++; } catch { } }
             }
 
 
