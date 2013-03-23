@@ -21,8 +21,9 @@ public class ronUtil2
 
 
     public string FullName { get; set; }
-    
-    
+
+    public string[] bookingDays { get; set; }
+    public string[] bookingDates { get; set; }
     public string First_Name { get; set; }
     public string Last_Name { get; set; }
     public string Employee_ID { get; set; }
@@ -75,6 +76,25 @@ public class ronUtil2
         for (int ii = 0; ii < table.Rows.Count; ii++)
         { Employee_ID[ii] = Convert.ToInt32(table.Rows[ii][0].ToString()); }
         return Employee_ID;
+    }
+
+    public string getAdvisorImage(int advisor_Id)
+    {
+        SqlDataSource SqlDataSource3 = new SqlDataSource();
+        SqlDataSource3.ConnectionString = ConfigurationManager.ConnectionStrings["ApplicationServices"].ToString();
+        SqlDataSource3.SelectCommand = "Select Image From Advisor Where Employee_ID='" + advisor_Id +"'";
+        
+
+        DataView view = (DataView)SqlDataSource3.Select(DataSourceSelectArguments.Empty);
+        DataTable table = view.ToTable();
+
+        //   string[] slotsTaken = new string[table.Rows.Count];
+
+
+        string Employee_Image = "";
+         if (table.Rows.Count > 0)
+        Employee_Image = table.Rows[0][0].ToString(); 
+        return Employee_Image;
     }
 
     public string getName(int advisor_Id)
@@ -201,9 +221,16 @@ public class ronUtil2
         DataView view = (DataView)SqlDataSource.Select(DataSourceSelectArguments.Empty);
         DataTable table = view.ToTable();
 
-      
-            DateTime start = DateTime.Parse(table.Rows[0][0].ToString());
-            DateTime end = DateTime.Parse(table.Rows[0][1].ToString());
+
+        DateTime start = new DateTime();
+        DateTime end = new DateTime();
+       
+        if (table.Rows.Count > 0)
+        {
+            start = DateTime.Parse(table.Rows[0][0].ToString());
+            end = DateTime.Parse(table.Rows[0][1].ToString());
+        }
+
             double dbltime = ((end - start).TotalHours) * 2;
             int inttime = Convert.ToInt32(dbltime);
             DateTime[] advisorSlots = new DateTime[inttime];
@@ -213,7 +240,8 @@ public class ronUtil2
 
                 advisorSlots[i] = start;
                 start = start.AddMinutes(30);
-            }                      
+            }
+            
         
         return advisorSlots;
     }
@@ -336,8 +364,50 @@ public class ronUtil2
     }
 
 
-    
+    public string[] getAdvisor2WeekSchedule()
+    {
+
+        string[] DaysAvailable2 = new string[5];
+        DaysAvailable2[0] = "Monday";
+        DaysAvailable2[1] = "Tuesday";
+        DaysAvailable2[2] = "Wednesday";
+        DaysAvailable2[3] = "Thursday";
+        DaysAvailable2[4] = "Friday";
+
+
+
+        DateTime now = DateTime.Today;
+        DateTime last = now.AddDays(8);
+        DateTime[] allDays = new DateTime[8];
+
+        for (int i = 0; i < allDays.Length; i++)
+        {
+            allDays[i] = now.AddDays(i);
+        }
+
+
+        string date = null;
+        for (int i = 0; i < allDays.Length; i++)
+        {
+            for (int ii = 0; ii < DaysAvailable2.Length; ii++)
+            {
+                if (allDays[i].DayOfWeek.ToString() == DaysAvailable2[ii])
+                {
+
+                    date = allDays[i].ToShortDateString() + "," + date;
+                }
+            }
+        }
+
+
+        Char[] splitChars = new Char[] { ',' };
+        string[] splitdate = date.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
+        Array.Sort(splitdate);
+        return splitdate;
+
+    }  
        
+
     public string[] getAdvisor2WeekSchedule(int id)
     {
             DateTime now = DateTime.Today;
@@ -367,10 +437,7 @@ public class ronUtil2
             Char[] splitChars = new Char[] { ',' };
             string[] splitdate = date.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
             return splitdate;
- 
-         
-        
-        
+                         
     }
 
 

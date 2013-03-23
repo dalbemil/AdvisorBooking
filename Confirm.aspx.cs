@@ -14,11 +14,18 @@ public partial class Default2 : System.Web.UI.Page
     {
         //Prevent exceptions,corruptions.
 
-        
+        Session["AdvisorID"] = Request.QueryString["AdvisorID"];
+        Session["date"] = Request.QueryString["bookingDate"];
+        Session["bookingTime"] = Request.QueryString["bookingTime"];
+
+        DropDownList1.SelectedValue = Session["bookingTime"].ToString();
+
         if (Session["date"] == null || Session["AdvisorID"] == null)
-            {
-                Server.Transfer("Advisor.aspx");
-            }
+        {
+            Server.Transfer("Advisor.aspx");
+        }
+
+
 
         int studentId = Convert.ToInt32(Session["StudentID"].ToString());
         int advisorId = Convert.ToInt32(Session["AdvisorID"].ToString());

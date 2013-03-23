@@ -21,9 +21,8 @@
                 
             </center>
         </div>
-        <div class="post-entry">
-            <div class="post-entry-top">
-                <div class="post-entry-bottom">
+
+
 
                      <div align="right">
                        
@@ -39,21 +38,20 @@
                     <br />
 <br />
         <asp:Table ID="myTable" runat="server" Width="720px" 
-  ForeColor="#FFCC99" Font-Size="Smaller"> 
-    <asp:TableRow ID="myTR" runat="server" Width="720px"  BackColor="#214183" ForeColor="White">
+  ForeColor="#FFCC99" Font-Size="Smaller" HorizontalAlign="Left" style="border-collapse:collapse;"> 
+    <asp:TableRow ID="myTR" runat="server" Width="720px"  BackColor="#6E6E6E" ForeColor="White" BorderWidth="0">
        
-        		<asp:TableCell>Advisor</asp:TableCell>
-                <asp:TableCell>Department</asp:TableCell>
-		<asp:TableCell>Monday</asp:TableCell>
-		<asp:TableCell>Tuesday</asp:TableCell>
-		<asp:TableCell>Wedneday</asp:TableCell>
-		<asp:TableCell>Thursday</asp:TableCell>
-		<asp:TableCell>Friday</asp:TableCell>	
+        		<asp:TableCell></asp:TableCell>
+                <asp:TableCell><asp:Label ID="Label11" runat="server" Text="Department" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> </asp:TableCell>
+		<asp:TableCell><asp:Label ID="Label1" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="Label6" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small"></asp:Label>     </asp:TableCell>
+		<asp:TableCell><asp:Label ID="Label2" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="Label7" runat="server" Text="Label" style="text-align:center" Width="100px"   Font-Size="Small"></asp:Label>     </asp:TableCell>
+		<asp:TableCell><asp:Label ID="Label3" runat="server" Text="Label" style="text-align:center" Width="100px"   Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="Label8" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small"></asp:Label>     </asp:TableCell>
+		<asp:TableCell><asp:Label ID="Label4" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="Label9" runat="server" Text="Label" style="text-align:center" Width="100px"   Font-Size="Small"></asp:Label>     </asp:TableCell>
+		<asp:TableCell><asp:Label ID="Label5" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="Label10" runat="server" Text="Label" style="text-align:center" Width="100px"   Font-Size="Small"></asp:Label>     </asp:TableCell>	
     </asp:TableRow>
 </asp:Table>  
-<br />
 
-</div></div></div></div>
+</div>
 
 
 
