@@ -70,19 +70,38 @@
                                     Pages</h3>
                                 <ul>
                                                      <li class="page_item"><a href="Default.aspx">Home</a></li>
-                                    <li class="page_item"><a href="Advisor.aspx">Book An Appointment</a></li>
-                                     <li class="page_item"><a href="CancelAppointment.aspx">Cancellation Page</a></li>
+                                  
 
-
-                                     <li class="page_item"><a href="BookSchedules2.aspx">Book Schedule Page</a></li>
-                                      <li class="page_item"><a href="ViewStudentAppointment.aspx"> ViewStudentAppointment</a></li>
-
-                                     <li class="page_item"><a href="AdvisorSchedule.aspx">Advisor Schedule Maintenance</a></li>
                                                                           
                                      <li class="page_item"><a href="#">About</a></li>
                                     <li class="page_item"><a href="ContactUs.aspx">Contact</a></li>
                                 </ul>
                             </div>
+
+
+                                           <div class="sidebar-box">
+                                <h3>
+                                    Student Utilities</h3>
+                                <ul>
+                          <li class="page_item"><a href="Advisor.aspx">Book An Appointment</a></li>
+                                     <li class="page_item"><a href="CancelAppointment.aspx">Cancellation Page</a></li>
+                                     <li class="page_item"><a href="ViewStudentAppointment.aspx"> ViewStudentAppointment</a></li>
+
+                                </ul>
+                            </div>
+
+                                           <div class="sidebar-box">
+                                <h3>
+                                    Advisor Utilities</h3>
+                                <ul>
+
+                                     <li class="page_item"><a href="BookSchedules2.aspx">Book Schedule Page</a></li>                                      
+                                     <li class="page_item"><a href="AdvisorSchedule.aspx">Advisor Schedule Maintenance</a></li>
+                                </ul>
+                            </div>
+
+
+
                             <div class="sidebar-box">
                                 <h3>
                                     Registration</h3>
@@ -110,4 +129,3 @@
     </div>
 </body>
 </html>
-<noframes>
