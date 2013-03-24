@@ -14,13 +14,20 @@ public partial class Default2 : System.Web.UI.Page
     {
         //Prevent exceptions,corruptions.
 
-        Session["AdvisorID"] = Request.QueryString["AdvisorID"];
-        Session["date"] = Request.QueryString["bookingDate"];
-        Session["bookingTime"] = Request.QueryString["bookingTime"];
+                 Session["AdvisorID"] = Request.QueryString["AdvisorID"];
+                 Session["date"] = Request.QueryString["bookingDate"];
 
-        DropDownList1.SelectedValue = Session["bookingTime"].ToString();
+                 try
+                 {
+                     Session["bookingTime"] = Request.QueryString["bookingTime"];
+                     DropDownList1.SelectedValue = Session["bookingTime"].ToString();
+                 }
+                 catch { }
+         
 
-        if (Session["date"] == null || Session["AdvisorID"] == null)
+    
+        
+            if (Session["date"] == null || Session["AdvisorID"] == null)
         {
             Server.Transfer("Advisor.aspx");
         }
@@ -148,5 +155,9 @@ public partial class Default2 : System.Web.UI.Page
     {
 
     }
+
+
+    public EventHandler PageUnload { get; set; }
+
 
 }

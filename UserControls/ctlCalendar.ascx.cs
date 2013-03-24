@@ -138,7 +138,7 @@ public partial class WebUserControl : System.Web.UI.UserControl
         { Server.Transfer("Schedule.aspx"); }
         else
         {
-            Server.Transfer("Confirm.aspx");
+            Server.Transfer("~/Confirm.aspx?AdvisorID=" + Session["AdvisorID"].ToString() + "&bookingDate=" + Calendar1.SelectedDate.ToString("MM/dd/yyyy"));
         }
 
     }

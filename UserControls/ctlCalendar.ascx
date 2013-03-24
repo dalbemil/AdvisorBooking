@@ -4,16 +4,9 @@
 <script runat=server>
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (Request.QueryString["ID"] == null)
-        //{
-        //    Server.Transfer("Advisor.aspx");
-        //}
+
         Session["AdvisorID"] = Request.QueryString["AdvisorID"];
         ronUtil2 get = new ronUtil2(Convert.ToInt16(Request.QueryString["AdvisorID"]));
-    //    DateTime listofDates= get.getAdvisor2WeekSchedule();
-       //Label1.Text = "Advisor:" + get.FullName ;
-     //   string[] dates = get.getAdvisor2WeekSchedule(Convert.ToInt16(Request.QueryString["AdvisorID"]));
-    //    Calendar1.SelectedDate = DateTime.Parse(dates[dates.Length-2]);
         Session["Student"] = 822459053;
 
         
