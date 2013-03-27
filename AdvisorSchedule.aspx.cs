@@ -101,8 +101,8 @@ public partial class AdvisorSchedule : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            Session["AdvisorName"] = "Damion Mitchell";
-            Session["AdvisorNumber"] = "102";
+            Session["AdvisorName"] = "Emily Davis";
+            Session["AdvisorNumber"] = "103";
 
             //merge the second, third and fourth columns with common title "Subjects"
             info.AddMergedColumns(new int[] { 2, 3}, "8:00 AM");

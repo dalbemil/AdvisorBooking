@@ -2,21 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
-//added
-using System.Configuration;
-using System.Data;
-using System.Web.UI.WebControls;
 using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Globalization;
-/// <summary>
-/// Summary description for ronUtil2
-/// </summary>
-public class ronUtil2
+
+public partial class Test2 : System.Web.UI.Page
 {
-
-
     public string[] DaysAvailable { get; set; }
     public string FullName { get; set; }
     public string[] bookingDays { get; set; }
@@ -24,16 +18,54 @@ public class ronUtil2
     public string First_Name { get; set; }
     public string Last_Name { get; set; }
     public string Employee_ID { get; set; }
-    public string Image  { get; set; }
+    public string Image { get; set; }
     public string Dept_id { get; set; }
 
-    public ronUtil2()
+
+    protected void Page_Load(object sender, EventArgs e)
     {
-     
+        int advisor_Id = 100, id = 100;
+        string date = "3/29/2013";
+        string stID = "822459053";
+
+        lblAdvisorID.Text = advisor_Id.ToString();
+        lblDate.Text = date;
+        lblStudentID.Text = stID;
+       int time = 9;
+
+
+           this.ronUtil3(100);
+           DropDownList1.DataSource = getAdvisorIDs();
+           DropDownList1.DataBind();
+
+           Label2.Text = getAdvisorImage(advisor_Id);
+           Label3.Text = getName(advisor_Id);
+           Label4.Text = getDepartment(advisor_Id);
+           //Label5.Text = getMonday(advisor_Id);
+           //Label6.Text = getTuesday(advisor_Id);
+           //Label7.Text = getWednesday(advisor_Id);
+           //Label8.Text = getThursday(advisor_Id);
+           //Label9.Text = getFriday(advisor_Id);
+           DropDownList10.DataSource = getSlots(advisor_Id, date);
+           DropDownList10.DataBind();
+           DropDownList11.DataSource = getTaken(advisor_Id, date);
+           DropDownList11.DataBind();
+           DropDownList12.DataSource = getAvailability(getSlots(advisor_Id, date), getTaken(advisor_Id, date));
+           DropDownList12.DataBind();
+           DropDownList13.DataSource = getDaysAvailable(id);
+           DropDownList13.DataBind();
+           //Label14.Text = getAvailableID(time);
+           Label15.Text = getCheck(stID).ToString();
+           DropDownList16.DataSource = getAdvisor2WeekSchedule();
+           DropDownList16.DataBind();
+           DropDownList17.DataSource = getAdvisor2WeekSchedule(id);
+           DropDownList17.DataBind();
+           DropDownList18.DataSource = getStudentIds();
+           DropDownList18.DataBind();
+
     }
 
-
-    public ronUtil2(int id)
+    public void ronUtil3(int id)
     {
         DaysAvailable = getDaysAvailable(id);
 
@@ -54,7 +86,6 @@ public class ronUtil2
         Image = table3.Rows[0][3].ToString();
 
     }
-
 
 
     public int[] getAdvisorIDs()
@@ -142,7 +173,7 @@ public class ronUtil2
         DataTable table = view.ToTable();
 
         DateTime[][] Slots = new DateTime[table.Rows.Count + 1][];
-        
+
         int[][] advisorSlotsAvailabilityID = new int[table.Rows.Count + 1][];
 
 
@@ -168,6 +199,7 @@ public class ronUtil2
 
 
                 }
+                
                 Slots[ii] = advisorSlots;
                 advisorSlotsAvailabilityID[ii] = SlotsScheduleID;
 
@@ -176,7 +208,7 @@ public class ronUtil2
         Slots[table.Rows.Count] = new DateTime[0];
         Slots[table.Rows.Count] = Slots[0];
         advisorSlotsAvailabilityID[table.Rows.Count] = advisorSlotsAvailabilityID[0];
-    
+
         for (int i = 1; i < table.Rows.Count; i++)
         {
             if (table.Rows.Count > i)
@@ -189,8 +221,8 @@ public class ronUtil2
 
         AllSlotsID = advisorSlotsAvailabilityID[table.Rows.Count];
         AllSlots = Slots[table.Rows.Count];
-        Array.Sort(Slots[table.Rows.Count]);
-
+        Array.Sort(Slots[table.Rows.Count]); 
+    
         return Slots[table.Rows.Count];
     }
 
@@ -203,7 +235,7 @@ public class ronUtil2
         //---------------------------------------
         SqlDataSource SqlDataSource2 = new SqlDataSource();
         SqlDataSource2.ConnectionString = ConfigurationManager.ConnectionStrings["AdvisorBookingConnectionString"].ToString();
-        SqlDataSource2.SelectCommand = "Select Appointment.Time_Start From Appointment,AdvisorSchedules  Where Appointment.AdvisorScheduleID=AdvisorSchedules.AdvisorScheduleID AND Advisor_ID='" + advisor_Id + "'  AND Day='" + day + "' And Week='" + week + "'";
+        SqlDataSource2.SelectCommand = "Select Appointment.StartTime From Appointment,AdvisorSchedules  Where Appointment.AdvisorScheduleID=AdvisorSchedules.AdvisorScheduleID AND Advisor_ID='" + advisor_Id + "'  AND Day='" + day + "' And Week='" + week + "'";
 
 
         DataView view2 = (DataView)SqlDataSource2.Select(DataSourceSelectArguments.Empty);
@@ -278,6 +310,7 @@ public class ronUtil2
 
 
 
+
         DateTime now = DateTime.Today.AddDays(1);
         DateTime last = now.AddDays(7);
         DateTime[] allDays = new DateTime[7];
@@ -321,7 +354,7 @@ public class ronUtil2
 
         SqlDataSource SqlDataSource3 = new SqlDataSource();
         SqlDataSource3.ConnectionString = ConfigurationManager.ConnectionStrings["AdvisorBookingConnectionString"].ToString();
-        SqlDataSource3.SelectCommand = "Select Distinct(Day) From AdvisorSchedules Where Advisor_ID='" + id + "' AND ( " + query[0] + ") OR " + query[1] + " OR " + query[2] + " OR " + query[3] + " OR " + query[4];
+        SqlDataSource3.SelectCommand = "Select Distinct(Day) From AdvisorSchedules Where Advisor_ID='" + ID + "' AND ( " + query[0] + ") OR " + query[1] + " OR " + query[2] + " OR " + query[3] + " OR " + query[4];
 
         DataView view = (DataView)SqlDataSource3.Select(DataSourceSelectArguments.Empty);
         DataTable table = view.ToTable();
@@ -351,7 +384,7 @@ public class ronUtil2
         DateTime date = DateTime.Now;
         SqlDataSource SqlDataSource3 = new SqlDataSource();
         SqlDataSource3.ConnectionString = ConfigurationManager.ConnectionStrings["AdvisorBookingConnectionString"].ToString();
-        SqlDataSource3.SelectCommand = "Select Time_Start From Appointment  Where Student_Id='" + Student_Id + "' AND Date>'" + date + "'";
+        SqlDataSource3.SelectCommand = "Select StartTime From Appointment  Where Student_Id='" + Student_Id + "' AND Date>'" + date + "'";
 
         DataView view = (DataView)SqlDataSource3.Select(DataSourceSelectArguments.Empty);
         DataTable table = view.ToTable();
@@ -367,13 +400,14 @@ public class ronUtil2
 
     public string[] getAdvisor2WeekSchedule()
     {
-
+      
         string[] DaysAvailable2 = new string[5];
         DaysAvailable2[0] = "Monday";
         DaysAvailable2[1] = "Tuesday";
         DaysAvailable2[2] = "Wednesday";
         DaysAvailable2[3] = "Thursday";
         DaysAvailable2[4] = "Friday";
+
 
 
 
@@ -409,7 +443,7 @@ public class ronUtil2
 
 
 
-    public string[] getAdvisor2WeekSchedule(int id)
+        public string[] getAdvisor2WeekSchedule(int id)
     {
         DateTime now = DateTime.Today;
         DateTime last = now.AddDays(8);
@@ -442,8 +476,7 @@ public class ronUtil2
 
 
     public int[] getStudentIds()
-    {
-        SqlDataSource SqlDataSource2 = new SqlDataSource();
+    {   SqlDataSource SqlDataSource2 = new SqlDataSource();
         SqlDataSource2.ConnectionString = ConfigurationManager.ConnectionStrings["AdvisorBookingConnectionString"].ToString();
         SqlDataSource2.SelectCommand = "Select Student_ID From Student";
 

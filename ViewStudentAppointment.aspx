@@ -5,7 +5,7 @@
         
           <div class="post" id="post-5">
             <div class="post-title">
-               <center><h2><a href="#">My Appoint</a>ment</h2></center>
+               <center><h2>My Appointment</h2></center>
             </div>
             <div class="post-entry">
               <div class="post-entry-top">
@@ -165,10 +165,10 @@
                                     </SelectedItemTemplate>
                                 </asp:ListView>
                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-                                    ConnectionString="<%$ ConnectionStrings:College_MgmtConnectionString %>" 
+                                    ConnectionString="<%$ ConnectionStrings:AdvisorBookingConnectionString %>" 
                                     SelectCommand="SELECT [Appointment_ID], [Student_Id], [Comment], [Booked_time] FROM [Appointment] WHERE ([Student_Id] = @Student_Id)">
                                     <SelectParameters>
-                                        <asp:Parameter DefaultValue="300556849" Name="Student_Id" Type="Int32" />
+                                        <asp:Parameter DefaultValue="350321543" Name="Student_Id" Type="Int32" />
                                     </SelectParameters>
                                 </asp:SqlDataSource>
                             </td>

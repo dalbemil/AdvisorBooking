@@ -11,21 +11,26 @@
     <div style="height: 237px">
     
         <br />
-        Appointment Table<asp:GridView ID="GridView1" runat="server" 
+        Database2.Appointment Table<asp:GridView ID="GridView1" runat="server" 
             AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Appointment_ID" 
             DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:BoundField DataField="Appointment_ID" HeaderText="Appointment_ID" 
                     InsertVisible="False" ReadOnly="True" SortExpression="Appointment_ID" />
-                <asp:BoundField DataField="Availability_ID" HeaderText="Availability_ID" 
-                    SortExpression="Availability_ID" />
+                <asp:BoundField DataField="AdvisorScheduleID" HeaderText="AdvisorScheduleID" 
+                    SortExpression="AdvisorScheduleID" />
                 <asp:BoundField DataField="Student_Id" HeaderText="Student_Id" 
                     SortExpression="Student_Id" />
+                <asp:BoundField DataField="Time_Start" HeaderText="Time_Start" 
+                    SortExpression="Time_Start" />
+                <asp:BoundField DataField="Time_End" HeaderText="Time_End" 
+                    SortExpression="Time_End" />
                 <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
-                <asp:BoundField DataField="Time" HeaderText="Time" SortExpression="Time" />
                 <asp:BoundField DataField="Comment" HeaderText="Comment" 
                     SortExpression="Comment" />
+                <asp:BoundField DataField="Cancel" HeaderText="Cancel" 
+                    SortExpression="Cancel" />
             </Columns>
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -39,12 +44,12 @@
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
+            ConnectionString="<%$ ConnectionStrings:AdvisorBookingConnectionString %>" 
             SelectCommand="SELECT * FROM [Appointment]"></asp:SqlDataSource>
+       <br />
         <br />
         <br />
-        <br />
-        Availability Table<asp:GridView ID="GridView2" runat="server" 
+        Database2.Availability Table<asp:GridView ID="GridView2" runat="server" 
             AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Availability_ID" 
             DataSourceID="SqlDataSource2" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -76,28 +81,12 @@
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
+            ConnectionString="<%$ ConnectionStrings:AdvisorBookingConnectionString %>" 
             SelectCommand="SELECT * FROM [Availability]"></asp:SqlDataSource>
     
-    </div>
-    <p>
-        &nbsp;</p>
-    <p>
-        &nbsp;</p>
-    <p>
-        &nbsp;</p>
-    <p>
-        &nbsp;</p>
-    <p>
-        &nbsp;</p>
-    <p>
-        &nbsp;</p>
-    <p>
-        &nbsp;</p>
-    <p>
-        &nbsp;</p>
-    <p>
-        Employee Table</p>
+       <br />
+        <br />
+        <br />Database2.Employee Table</p>
     <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" 
         CellPadding="4" DataKeyNames="Employee_ID" DataSourceID="SqlDataSource3" 
         ForeColor="#333333" GridLines="None">
@@ -125,10 +114,11 @@
         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
     <asp:SqlDataSource ID="SqlDataSource3" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
+        ConnectionString="<%$ ConnectionStrings:AdvisorBookingConnectionString %>" 
         SelectCommand="SELECT * FROM [Advisor]"></asp:SqlDataSource>
-    <br />
-    Student Table<br />
+           <br />
+        <br />
+        <br />   Database2.Student Table<br />
     <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" 
         CellPadding="4" DataKeyNames="Student_ID" DataSourceID="SqlDataSource4" 
         ForeColor="#333333" GridLines="None">
@@ -158,10 +148,11 @@
         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
     <asp:SqlDataSource ID="SqlDataSource4" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
+        ConnectionString="<%$ ConnectionStrings:AdvisorBookingConnectionString %>" 
         SelectCommand="SELECT * FROM [Student]"></asp:SqlDataSource>
-    <br />
-    Cancel<br />
+         <br />
+        <br />
+        <br /> Database2.Cancel<br />
     <asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False" 
         CellPadding="4" DataSourceID="SqlDataSource5" ForeColor="#333333" 
         GridLines="None">
@@ -190,10 +181,11 @@
         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
     <asp:SqlDataSource ID="SqlDataSource5" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
+        ConnectionString="<%$ ConnectionStrings:AdvisorBookingConnectionString %>" 
         SelectCommand="SELECT * FROM [cancel]"></asp:SqlDataSource>
-    <br />
-    Department<br />
+        <br />
+        <br />
+        <br /> Database2..Department<br />
     <asp:GridView ID="GridView6" runat="server" AutoGenerateColumns="False" 
         CellPadding="4" DataKeyNames="Dept_Id" DataSourceID="SqlDataSource6" 
         ForeColor="#333333" GridLines="None">
@@ -216,12 +208,12 @@
         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
     <asp:SqlDataSource ID="SqlDataSource6" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
+        ConnectionString="<%$ ConnectionStrings:AdvisorBookingConnectionString %>" 
         SelectCommand="SELECT * FROM [Department]"></asp:SqlDataSource>
-    <br />
-    
         <br />
-        Advisor Schedules<asp:GridView ID="GridView7" runat="server" 
+        <br />
+        <br />
+       Database2..Advisor Schedules<asp:GridView ID="GridView7" runat="server" 
             AutoGenerateColumns="False" CellPadding="4" DataKeyNames="AdvisorScheduleID" 
             DataSourceID="SqlDataSource7" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />

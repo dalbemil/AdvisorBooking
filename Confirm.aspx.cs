@@ -114,30 +114,33 @@ public partial class Default2 : System.Web.UI.Page
 
                 int Student_Id = studentId;
                 int Advisor_Id = advisorId;
-                string Time = picked.ToString("HH:mm:ss");
+                string Time_Start = picked.ToString("HH:mm:ss");
+                string Time_End = picked.AddMinutes(30).ToString("HH:mm:ss");
                 string Date = datev2.ToString("yyyy-MM-dd");
-                Label1.Text = Time;
+                
                 string Comments = TextArea1.Value.ToString();
-                int Availability_ID= get.getAvailableID(Advisor_Id, date);
+                int AdvisorScheduleID = get.getAvailableID(DropDownList1.SelectedValue.ToString());
 
-                string sqlQuery = "INSERT INTO Appointment (Availability_ID, Student_Id,Time,Date,Comment,Cancel)";
-                sqlQuery += " VALUES (@Availability_ID,@Student_Id,@Time,@Date,@Comment,@Cancel)";
-                string connectionString = ConfigurationManager.ConnectionStrings["ApplicationServices"].ToString();
+                string sqlQuery = "INSERT INTO Appointment (AdvisorScheduleID, Student_Id,Time_Start,Time_End,Date,Comment,Cancel)";
+                sqlQuery += " VALUES (@AdvisorScheduleID,@Student_Id,@Time_Start,@Time_End,@Date,@Comment,@Cancel)";
+                string connectionString = ConfigurationManager.ConnectionStrings["AdvisorBookingConnectionString"].ToString();
                 using (SqlConnection dataConnection = new SqlConnection(connectionString))
                 {
                     using (SqlCommand dataCommand = new SqlCommand(sqlQuery, dataConnection))
                     {
-                        dataCommand.Parameters.AddWithValue("Availability_ID", Availability_ID);
+                        dataCommand.Parameters.AddWithValue("AdvisorScheduleID", AdvisorScheduleID);
                         dataCommand.Parameters.AddWithValue("Student_Id", studentId);
-                        dataCommand.Parameters.AddWithValue("Time", Time);
+                        dataCommand.Parameters.AddWithValue("Time_Start", Time_Start);
+                        dataCommand.Parameters.AddWithValue("Time_End", Time_End);
                         dataCommand.Parameters.AddWithValue("Date", Date);
                         dataCommand.Parameters.AddWithValue("Comment", Comments);
-                        dataCommand.Parameters.AddWithValue("Cancel",1 );
+                        dataCommand.Parameters.AddWithValue("Cancel", 1);
                         dataConnection.Open();
                         dataCommand.ExecuteNonQuery();
                         dataConnection.Close();
                     }
                 }
+
 
                 Response.Write("<script type='text/javascript'>alert('You are booked');</script>");
                 Server.Transfer("Advisor.aspx");
