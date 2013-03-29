@@ -5,7 +5,6 @@
     protected void Page_Load(object sender, EventArgs e)
     {
         
-        
         ronUtil2 get = new ronUtil2(Convert.ToInt32(Request.QueryString["AdvisorID"]));
         if (!get.getCheck(Session["StudentID"].ToString())) { Server.Transfer("CancelAppointment.aspx"); }
         string[] dates = get.getAdvisor2WeekSchedule(Convert.ToInt32(Request.QueryString["AdvisorID"]));

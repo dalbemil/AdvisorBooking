@@ -14,23 +14,12 @@ public partial class Default2 : System.Web.UI.Page
 
         ronUtil2 get = new ronUtil2();
 
-        //Dropdown list
-        DropDownList1.DataSource = get.getStudentIds();
+
+        drpdownStudentID.DataSource = get.getStudentIds();
         if (!IsPostBack)
-            DropDownList1.DataBind();
+            drpdownStudentID.DataBind();
+        
 
-
-
-
-
-
-
-
-
-
-
-        //Tables
-        //string[] days= get.DaysAvailable;
         string[] dates = get.getAdvisor2WeekSchedule();
         DateTime[] datesv2 = new DateTime[dates.Length];
 
@@ -38,36 +27,22 @@ public partial class Default2 : System.Web.UI.Page
         { datesv2[i] = DateTime.Parse(dates[i]); }
 
 
-        Label1.Text = datesv2[0].DayOfWeek.ToString();
-        Label2.Text = datesv2[1].DayOfWeek.ToString();
-        Label3.Text = datesv2[2].DayOfWeek.ToString();
-        Label4.Text = datesv2[3].DayOfWeek.ToString();
-        Label5.Text = datesv2[4].DayOfWeek.ToString();
+        lblDay1.Text = datesv2[0].DayOfWeek.ToString();
+        lblDay2.Text = datesv2[1].DayOfWeek.ToString();
+        lblDay3.Text = datesv2[2].DayOfWeek.ToString();
+        lblDay4.Text = datesv2[3].DayOfWeek.ToString();
+        lblDay5.Text = datesv2[4].DayOfWeek.ToString();
 
-        Label6.Text = datesv2[0].ToString("dd MMM yyyy");
-        Label7.Text = datesv2[1].ToString("dd MMM yyyy");
+        lblDate1.Text = datesv2[0].ToString("dd MMM yyyy");
+        lblDate2.Text = datesv2[1].ToString("dd MMM yyyy");
+        lblDate3.Text = datesv2[2].ToString("dd MMM yyyy");
+        lblDate4.Text = datesv2[3].ToString("dd MMM yyyy");
+        lblDate5.Text = datesv2[4].ToString("dd MMM yyyy");
 
-        Label8.Text = datesv2[2].ToString("dd MMM yyyy");
-        Label9.Text = datesv2[3].ToString("dd MMM yyyy");
-        Label10.Text = datesv2[4].ToString("dd MMM yyyy");
-
-        //Label1.Text = "1";
-        //Label2.Text = "2";
-        //Label3.Text = "3";
-        //Label4.Text = "4";
-        //Label5.Text = "5";
-        //Label2.Text = get.bookingDays[1];
-        //Label3.Text = get.bookingDays[2];
-        //Label4.Text = get.bookingDays[3];
-        //Label5.Text = get.bookingDays[4];
 
         int[] ID = get.getAdvisorIDs();
 
-        //DateTime[] advisorAllSlots = get.getSlots(101, date[0]);
-        //DateTime[] taken = get.getTaken(101, date[0]);
-        //DateTime[] availibility = get.getAvailability(advisorAllSlots, taken);
-        //HyperLink[] link2 = new HyperLink[availibility.Length];
-        //  for (int i = 0; i < link2.Length; i++) { link2[i] = new HyperLink(); }
+
 
         for (int ii = 0; ii < ID.Length; ii++)
         {
@@ -111,23 +86,24 @@ public partial class Default2 : System.Web.UI.Page
                         link2[iii].ForeColor = System.Drawing.Color.Black;
                         td[EachRow + 2].Controls.Add(link2[iii]);
                     }
+                    td[iii].HorizontalAlign = HorizontalAlign.Center;
                 }
             }
 
+            //Row width
             td[0].Width = 200;
+            td[0].Height = 150;
             td[1].Width = 60;
             td[2].Width = 60;
             td[3].Width = 60;
             td[4].Width = 60;
             td[5].Width = 60;
             td[6].Width = 60;
+            
 
-            td[2].HorizontalAlign = HorizontalAlign.Center;
-            td[3].HorizontalAlign = HorizontalAlign.Center;
-            td[4].HorizontalAlign = HorizontalAlign.Center;
-            td[5].HorizontalAlign = HorizontalAlign.Center;
-            td[6].HorizontalAlign = HorizontalAlign.Center;
 
+
+            //Column color
             td[0].BackColor = System.Drawing.Color.White;
             td[1].BackColor = System.Drawing.Color.WhiteSmoke;
             td[2].BackColor = System.Drawing.Color.White;
@@ -137,7 +113,7 @@ public partial class Default2 : System.Web.UI.Page
             td[6].BackColor = System.Drawing.Color.White;
 
 
-            td[0].Height = 150;
+            
             TableRow tRow = new TableRow();
             tRow.VerticalAlign = VerticalAlign.Top;
             myTable.Rows.Add(tRow);
@@ -157,6 +133,6 @@ public partial class Default2 : System.Web.UI.Page
     {
 
 
-        Session["StudentID"] = DropDownList1.SelectedValue;
+        Session["StudentID"] = drpdownStudentID.SelectedValue;
     }
 }

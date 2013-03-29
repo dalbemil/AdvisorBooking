@@ -20,7 +20,7 @@ public partial class Default2 : System.Web.UI.Page
                  try
                  {
                      Session["bookingTime"] = Request.QueryString["bookingTime"];
-                     DropDownList1.SelectedValue = Session["bookingTime"].ToString();
+                     dropdownlistTime.SelectedValue = Session["bookingTime"].ToString();
                  }
                  catch { }
          
@@ -39,7 +39,7 @@ public partial class Default2 : System.Web.UI.Page
         string date = Session["date"].ToString();
         ronUtil2 get = new ronUtil2(advisorId);
 
-        Submit.Visible = true;
+        btnSubmit.Visible = true;
         //if (get.getCheck(studentId) == true)
         //{ Submit.Visible = true; }
         //else
@@ -61,11 +61,11 @@ public partial class Default2 : System.Web.UI.Page
         txtDate.Text = datev2.ToShortDateString();
 
         
-            DropDownList1.DataSource = shorttime;
+            dropdownlistTime.DataSource = shorttime;
          //   DropDownList1.DataBind();
           if (!IsPostBack)
            { 
-                DropDownList1.DataBind();
+                dropdownlistTime.DataBind();
            }
 
             
@@ -101,7 +101,7 @@ public partial class Default2 : System.Web.UI.Page
             bool proceed = false;
             for (int i = 0; i < availibility.Length; i++)
             {
-                if (DropDownList1.SelectedValue.ToString() == availibility[i].ToShortTimeString())
+                if (dropdownlistTime.SelectedValue.ToString() == availibility[i].ToShortTimeString())
                 {
                     proceed = true;
                 }
@@ -110,7 +110,7 @@ public partial class Default2 : System.Web.UI.Page
             if (proceed)
             {
                 DateTime picked = new DateTime();
-                picked = DateTime.ParseExact(DropDownList1.SelectedValue.ToString(), "h:mm tt", CultureInfo.InvariantCulture);
+                picked = DateTime.ParseExact(dropdownlistTime.SelectedValue.ToString(), "h:mm tt", CultureInfo.InvariantCulture);
 
                 int Student_Id = studentId;
                 int Advisor_Id = advisorId;
@@ -119,7 +119,7 @@ public partial class Default2 : System.Web.UI.Page
                 string Date = datev2.ToString("yyyy-MM-dd");
                 
                 string Comments = TextArea1.Value.ToString();
-                int AdvisorScheduleID = get.getAvailableID(DropDownList1.SelectedValue.ToString());
+                int AdvisorScheduleID = get.getAvailableID(dropdownlistTime.SelectedValue.ToString());
 
                 string sqlQuery = "INSERT INTO Appointment (AdvisorScheduleID, Student_Id,Time_Start,Time_End,Date,Comment,Cancel)";
                 sqlQuery += " VALUES (@AdvisorScheduleID,@Student_Id,@Time_Start,@Time_End,@Date,@Comment,@Cancel)";

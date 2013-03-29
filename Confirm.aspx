@@ -30,7 +30,7 @@
                             </td>
                             <td style="width: 221px" valign="middle">
                                 
-                                    <asp:Label ID="Label4" runat="server" ForeColor="#CCCCCC" 
+                                    <asp:Label ID="lvlAdvisorName" runat="server" ForeColor="#CCCCCC" 
                                     Text="Advisor Name" style="font-weight: 700"></asp:Label>
                             </td>
                             <td valign="middle">
@@ -51,11 +51,11 @@
                             <td style="width: 137px; text-align: right" valign="middle">
                                 &nbsp;</td>
                             <td style="width: 221px" valign="middle">
-                                <asp:Label ID="Label1" runat="server" ForeColor="#CCCCCC" 
+                                <asp:Label ID="lblAppointmentDate" runat="server" ForeColor="#CCCCCC" 
                                     Text="Appointment Date" style="font-weight: 700"></asp:Label>
                             </td>
                             <td valign="middle">
-                                        <asp:Label ID="Label2" runat="server" ForeColor="#CCCCCC" Text="Time" 
+                                        <asp:Label ID="lvlTime" runat="server" ForeColor="#CCCCCC" Text="Time" 
                                             style="font-weight: 700"></asp:Label>
                                         </td>
                         </tr>
@@ -77,7 +77,7 @@
                          
                                  <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                     <ContentTemplate>
-                                        <asp:DropDownList ID="DropDownList1" runat="server" 
+                                        <asp:DropDownList ID="dropdownlistTime" runat="server" 
                                             onselectedindexchanged="DropDownList1_SelectedIndexChanged" BackColor="White" 
                                             ForeColor="Black" style="border-style: none; border-color: inherit; border-width: 0px; line-height: 8px; font-size: 9px; margin-bottom: 0px;"
                                         Height="18px" Width="202px"></asp:DropDownList>
@@ -89,7 +89,7 @@
                             <td style="width: 137px; text-align: right" valign="middle">
                                 &nbsp;</td>
                             <td valign="middle" colspan="2">
-                                <asp:Label ID="Label5" runat="server" ForeColor="#CCCCCC" 
+                                <asp:Label ID="lblDescription" runat="server" ForeColor="#CCCCCC" 
                                     Text="Description" style="font-weight: 700"></asp:Label>
                             </td>
                         </tr>
@@ -104,7 +104,7 @@
                             <td style="width: 137px; text-align: right" valign="middle">
                                 &nbsp;</td>
                             <td valign="middle" colspan="2">
-                                <asp:Button ID="Submit" runat="server" Text="Submit" onclick="Button1_Click" 
+                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" onclick="Button1_Click" 
                                     Visible="False" />
                                 </td>
                         </tr>

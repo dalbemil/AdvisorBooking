@@ -26,7 +26,7 @@
 
                      <div align="right">
                        
-                                 <asp:DropDownList ID="DropDownList1" runat="server" Height="16px" Width="128px" 
+                                 <asp:DropDownList ID="drpdownStudentID" runat="server" Height="16px" Width="128px" 
                                      AutoPostBack="True">
                                  </asp:DropDownList>
                          
@@ -43,11 +43,11 @@
        
         		<asp:TableCell></asp:TableCell>
                 <asp:TableCell><asp:Label ID="Label11" runat="server" Text="Department" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> </asp:TableCell>
-		<asp:TableCell><asp:Label ID="Label1" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="Label6" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small"></asp:Label>     </asp:TableCell>
-		<asp:TableCell><asp:Label ID="Label2" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="Label7" runat="server" Text="Label" style="text-align:center" Width="100px"   Font-Size="Small"></asp:Label>     </asp:TableCell>
-		<asp:TableCell><asp:Label ID="Label3" runat="server" Text="Label" style="text-align:center" Width="100px"   Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="Label8" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small"></asp:Label>     </asp:TableCell>
-		<asp:TableCell><asp:Label ID="Label4" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="Label9" runat="server" Text="Label" style="text-align:center" Width="100px"   Font-Size="Small"></asp:Label>     </asp:TableCell>
-		<asp:TableCell><asp:Label ID="Label5" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="Label10" runat="server" Text="Label" style="text-align:center" Width="100px"   Font-Size="Small"></asp:Label>     </asp:TableCell>	
+		<asp:TableCell><asp:Label ID="lblDay1" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="lblDate1" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small"></asp:Label>     </asp:TableCell>
+		<asp:TableCell><asp:Label ID="lblDay2" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="lblDate2" runat="server" Text="Label" style="text-align:center" Width="100px"   Font-Size="Small"></asp:Label>     </asp:TableCell>
+		<asp:TableCell><asp:Label ID="lblDay3" runat="server" Text="Label" style="text-align:center" Width="100px"   Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="lblDate3" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small"></asp:Label>     </asp:TableCell>
+		<asp:TableCell><asp:Label ID="lblDay4" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="lblDate4" runat="server" Text="Label" style="text-align:center" Width="100px"   Font-Size="Small"></asp:Label>     </asp:TableCell>
+		<asp:TableCell><asp:Label ID="lblDay5" runat="server" Text="Label" style="text-align:center" Width="100px"  Font-Size="Small" Font-Bold="True"></asp:Label> <br />     <asp:Label ID="lblDate5" runat="server" Text="Label" style="text-align:center" Width="100px"   Font-Size="Small"></asp:Label>     </asp:TableCell>	
     </asp:TableRow>
 </asp:Table>  
 
