@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class WebUserControl : System.Web.UI.UserControl
 {
 
-
+    ronUtil2 get = new ronUtil2();
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -21,10 +21,10 @@ public partial class WebUserControl : System.Web.UI.UserControl
     protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
     {
 
+        int id = Convert.ToInt16(Request.QueryString["AdvisorID"]); 
+        if (get.DaysAvailable==null)
+        {get = new ronUtil2(id);}
 
-
-        int id = Convert.ToInt16(Request.QueryString["AdvisorID"]);
-        ronUtil2 get = new ronUtil2(id);
         int length = get.DaysAvailable.Length;
         DayOfWeek[] days = new DayOfWeek[length];
 

@@ -28,7 +28,8 @@
             Font-Size="8pt" ForeColor="Black" Height="23px" NextPrevFormat="FullMonth" 
             Width="201px" ondayrender="Calendar1_DayRender" onprerender="Calendar1_SelectionChanged" 
             onselectionchanged="cmd" DayNameFormat="Shortest" 
-              ShowNextPrevMonth="False" style="margin:0 auto; text-align:center;">
+              ShowNextPrevMonth="False" style="margin:0 auto; text-align:center;" 
+              oninit="Page_Load">
             <DayHeaderStyle Font-Bold="True" Font-Size="7pt" ForeColor="#333333" 
                 Height="10pt" BackColor="#EEEEEE" />
             <DayStyle Width="14%" />
