@@ -12,9 +12,8 @@ using System.Data;
 public class CancelledAppointment
 {
     SqlConnection con;
-    SqlCommand cmd, cmd_cancel,cmd_cancelRequest,cmd_delete_request;
+    SqlCommand cmd, cmd_cancel, cmd_cancelRequest, cmd_delete_request;
     private int student_Id;
-
     private int appointment_Id;
 
     public int Appointment_Id
@@ -23,13 +22,12 @@ public class CancelledAppointment
         set { appointment_Id = value; }
     }
 
-    
-
     public int Student_Id
     {
         get { return student_Id; }
         set { student_Id = value; }
     }
+
     private String reason;
 
     public String Reason
@@ -38,33 +36,32 @@ public class CancelledAppointment
         set { reason = value; }
     }
 
-	public CancelledAppointment()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+    public CancelledAppointment()
+    {
+        //
+        // TODO: Add constructor logic here
+        //
+    }
 
     public void updateValues()
     {
         try
         {
-            string s = WebConfigurationManager.ConnectionStrings["College_MgmtConnectionString"].ToString();
+            string s = WebConfigurationManager.ConnectionStrings["AdvisorBookingConnectionString"].ToString();
             con = new SqlConnection(s);
             con.Open();
-            string query = "Update Appointment Set Cancel =('1') Where student_id =('" + Student_Id + "') and Appointment_ID=('" + Appointment_Id + "')";
+            string query = "Update Appointments Set Cancel =('1') Where Student_Id =('" + Student_Id + "') and Appointment_ID=('" + Appointment_Id + "')";
             cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
-            string updatequery=" INSERT INTO  cancel (Appointment_ID,Availability_ID,Student_id,comment)  select Appointment_ID,Availability_ID,Student_id,comment from Appointment where cancel='"+1+"'";
+            string updatequery = " INSERT INTO Cancel (Appointment_ID, AdvisorScheduleID,Student_id,comment)  select Appointment_ID,AdvisorScheduleID,Student_Id,comment from Appointments where cancel='" + 1 + "'";
             cmd_cancel = new SqlCommand(updatequery, con);
             cmd_cancel.ExecuteNonQuery();
-            string insertquery = "update cancel set cancel_request='" + Reason + "' where Appointment_ID=('" + Appointment_Id + "')";
+            string insertquery = "Update Cancel set cancel_request='" + Reason + "' where Appointment_ID=('" + Appointment_Id + "')";
             cmd_cancelRequest = new SqlCommand(insertquery, con);
             cmd_cancelRequest.ExecuteNonQuery();
-            string deletequery = "delete from Appointment Where student_id =('" + Student_Id + "') and Appointment_ID=('"+Appointment_Id+"')";
-            cmd_delete_request = new SqlCommand(deletequery, con);
+            string deletequery = "DELETE from Appointments Where Student_Id =('" + Student_Id + "') and Appointment_ID=('" + Appointment_Id + "')";
+           cmd_delete_request = new SqlCommand(deletequery, con);
             cmd_delete_request.ExecuteNonQuery();
-
 
             con.Close();
         }
@@ -72,22 +69,30 @@ public class CancelledAppointment
         {
             throw new Exception(ex.ToString(), ex);
         }
-
     }
+
     public DataSet cancelled()
     {
-        string s = WebConfigurationManager.ConnectionStrings["College_MgmtConnectionString"].ToString();
+        DateTime date = DateTime.Today.AddDays(1);
+        
+        string s = WebConfigurationManager.ConnectionStrings["AdvisorBookingConnectionString"].ToString();
         SqlConnection con = new SqlConnection(s); ;
 
         con.Open();
-        string select = "SELECT Appointment_ID,Student_Id,Comment,Date_Start,Time_Start FROM Appointment x,Availability b WHERE x.Availability_ID=b.Availability_ID and x.student_id=('" + Student_Id + "')";
+        string select = "SELECT     Appointment_ID,Advisors.First_Name + ' ' +  Advisors.Last_Name As Advisor, Appointments.Time_Start, Appointments.Time_End, Appointments.Date,Comment,Student_ID FROM Advisors INNER JOIN AdvisorSchedules ON Advisors.Advisor_ID = AdvisorSchedules.Advisor_ID INNER JOIN Appointments ON AdvisorSchedules.AdvisorScheduleID = Appointments.AdvisorScheduleID WHERE Appointments.Student_Id='" + Student_Id + "'";
         SqlDataAdapter sadp = new SqlDataAdapter(select, con);
         DataSet ds = new DataSet();
         sadp.Fill(ds);
         con.Close();
+        
+        //DataRow dr = ds.Tables[0].Rows[0];
+        //foreach (DataRow row in ds.Tables[0].Rows)
+        //{
+        //if (row["Date_Start"] ==(Object) date )
+        //{
+
+        //}
         return ds;
+        //}
     }
-
-
-
 }

@@ -18,12 +18,12 @@
 
                     <table style="width: 100%">
                         <tr>
-                            <td style="width: 137px; text-align: right" valign="middle">
-                                &nbsp;</td>
-                            <td style="width: 221px" valign="middle">
-                                &nbsp;</td>
-                            <td valign="middle">
-                                &nbsp;</td>
+                            <td style="width: 137px; text-align: left" valign="middle">
+
+
+
+                                </td>
+                          
                         </tr>
                                   
                        

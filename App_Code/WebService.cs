@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
 using System.Globalization;
+using System.Text;
 
 /// <summary>
 /// Summary description for WebService
@@ -17,6 +18,7 @@ using System.Globalization;
 // [System.Web.Script.Services.ScriptService]
 public class WebService : System.Web.Services.WebService {
 
+    public User LogInUser = new User();
     public WebService () {
 
         //Uncomment the following line if using designed components 
@@ -68,6 +70,136 @@ public class WebService : System.Web.Services.WebService {
     }
 
     [WebMethod]
+    public bool ValidateLoginUser(string LogInUserName, string LogInUserPassword)
+    {
+        SqlConnection sqlConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["AdvisorBookingConnectionString"].ConnectionString);
+        System.Data.DataSet ds = new System.Data.DataSet();
+        Boolean IsSuccessful = false;
+
+        try
+        {
+            SqlCommand sCommand = new SqlCommand("ValidateUserName", sqlConnect);
+            sCommand.CommandType = CommandType.StoredProcedure;
+            sCommand.CommandTimeout = 30;
+
+            sCommand.Parameters.AddWithValue("@UserName", LogInUserName);
+            SqlDataAdapter daLogInUser = new SqlDataAdapter(sCommand);
+            daLogInUser.Fill(ds, "LogInUser");
+
+            //Check UserPassword, Case sensitive
+            if (string.Compare(ds.Tables["LogInUser"].Rows[0]["UserPassword"].ToString(), LogInUserPassword, false) == 0)
+            {
+                switch (string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["LogInType"].ToString()) ? "" : ds.Tables["LogInUser"].Rows[0]["LogInType"].ToString())
+                {
+                    case "Student":
+                        IsSuccessful = true;
+                        LogInUser.Type = LogInType.Student;
+                        LogInUser.IDNumber = Convert.ToInt32(string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["IDNumber"].ToString()) ? "0" : ds.Tables["LogInUser"].Rows[0]["IDNumber"].ToString());
+                        LogInUser.FirstName = string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["FirstName"].ToString()) ? "" : ds.Tables["LogInUser"].Rows[0]["FirstName"].ToString();
+                        LogInUser.LastName = string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["LastName"].ToString()) ? "" : ds.Tables["LogInUser"].Rows[0]["LastName"].ToString();
+                        break;
+
+                    case "Advisor":
+                        IsSuccessful = true;
+                        LogInUser.Type = LogInType.Advisor;
+                        LogInUser.IDNumber = Convert.ToInt32(string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["IDNumber"].ToString()) ? "0" : ds.Tables["LogInUser"].Rows[0]["IDNumber"].ToString());
+                        LogInUser.FirstName = string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["FirstName"].ToString()) ? "" : ds.Tables["LogInUser"].Rows[0]["FirstName"].ToString();
+                        LogInUser.LastName = string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["LastName"].ToString()) ? "" : ds.Tables["LogInUser"].Rows[0]["LastName"].ToString();
+                        break;
+
+                    default:
+                        IsSuccessful = false;
+                        LogInUser.IDNumber = 0;
+                        LogInUser.Type = LogInType.None;
+                        LogInUser.FirstName = "";
+                        LogInUser.LastName = "";
+                        break;
+                }
+            }
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+        finally
+        {
+            if (sqlConnect != null)
+            {
+                if (sqlConnect.State == ConnectionState.Open)
+                {
+                    sqlConnect.Close();
+                    sqlConnect.Dispose();
+                    sqlConnect = null;
+                }
+            }
+        }
+
+        return IsSuccessful;
+    }
+
+    [WebMethod]
+    public String ValidateLoginUserFromMobile(string LogInUserName, string LogInUserPassword)
+    {
+        SqlConnection sqlConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["AdvisorBookingConnectionString"].ConnectionString);
+        System.Data.DataSet ds = new System.Data.DataSet();
+        StringBuilder Users = new StringBuilder();
+
+        try
+        {
+            SqlCommand sCommand = new SqlCommand("ValidateUserName", sqlConnect);
+            sCommand.CommandType = CommandType.StoredProcedure;
+            sCommand.CommandTimeout = 30;
+
+            sCommand.Parameters.AddWithValue("@UserName", LogInUserName);
+            SqlDataAdapter daLogInUser = new SqlDataAdapter(sCommand);
+            daLogInUser.Fill(ds, "LogInUser");
+
+            if (string.Compare(ds.Tables["LogInUser"].Rows[0]["UserPassword"].ToString(), LogInUserPassword, false) == 0)
+            {
+                switch (string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["LogInType"].ToString()) ? "" : ds.Tables["LogInUser"].Rows[0]["LogInType"].ToString())
+                {
+                    case "Student":
+                        Users.Append("Student,");
+                        Users.Append(string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["IDNumber"].ToString()) ? "" : ds.Tables["LogInUser"].Rows[0]["IDNumber"].ToString() + ",");
+                        Users.Append(string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["FirstName"].ToString()) ? "" : ds.Tables["LogInUser"].Rows[0]["FirstName"].ToString() + ",");
+                        Users.Append(string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["LastName"].ToString()) ? "" : ds.Tables["LogInUser"].Rows[0]["LastName"].ToString());
+                        break;
+
+                    case "Advisor":
+                        Users.Append("Advisor,");
+                        Users.Append(string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["IDNumber"].ToString()) ? "" : ds.Tables["LogInUser"].Rows[0]["IDNumber"].ToString() + ",");
+                        Users.Append(string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["FirstName"].ToString()) ? "" : ds.Tables["LogInUser"].Rows[0]["FirstName"].ToString() + ",");
+                        Users.Append(string.IsNullOrEmpty(ds.Tables["LogInUser"].Rows[0]["LastName"].ToString()) ? "" : ds.Tables["LogInUser"].Rows[0]["LastName"].ToString());
+                        break;
+
+                    default:
+                         Users.Append("None,0,,");
+                        break;
+                }
+            }
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+        finally
+        {
+            if (sqlConnect != null)
+            {
+                if (sqlConnect.State == ConnectionState.Open)
+                {
+                    sqlConnect.Close();
+                    sqlConnect.Dispose();
+                    sqlConnect = null;
+                }
+            }
+        }
+
+        return Users.ToString();
+    }
+
+
+    [WebMethod]
     public int WeeksInYear(int year)
     {
         GregorianCalendar cal = new GregorianCalendar(GregorianCalendarTypes.Localized);
@@ -81,7 +213,7 @@ public class WebService : System.Web.Services.WebService {
         return cal.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
     }
 
-     [WebMethod]
+    [WebMethod]
     public DateTime DayInWeekDate(string day, int Week, int Year)
     {
          DateTime DayDate = DateTime.Now;

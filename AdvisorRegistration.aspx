@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdvisorBookingServiceMasterPage.master" AutoEventWireup="true" CodeFile="AdvisorRegistration.aspx.cs" Inherits="AdvisorRegistration" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LogInMasterPage.master" AutoEventWireup="true" CodeFile="AdvisorRegistration.aspx.cs" Inherits="AdvisorRegistration" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form id="form1" runat="server">
@@ -86,8 +86,8 @@
                                      DataValueField="Dept_Id">
                                  </asp:DropDownList>
                                  <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
-                                     ConnectionString="<%$ ConnectionStrings:College_MgmtConnectionString %>" 
-                                     SelectCommand="SELECT [Dept_Name], [Dept_Id] FROM [Department]">
+                                     ConnectionString="<%$ ConnectionStrings:AdvisorBookingConnectionString %>" 
+                                     SelectCommand="SELECT [Dept_Name], [Dept_Id] FROM [Departments]">
                                  </asp:SqlDataSource>
                                
                             </td>

@@ -85,10 +85,10 @@ public class Student
 
         try
         {
-            string s = WebConfigurationManager.ConnectionStrings["College_MgmtConnectionString"].ToString();
+            string s = WebConfigurationManager.ConnectionStrings["AdvisorBookingConnectionString"].ToString();
             con = new SqlConnection(s);
             con.Open();
-            cmd = new SqlCommand("insert into student values('" + Student_ID + "','" + First_Name + "','" + Last_Name + "','" + Program_id + "','" + CurrentSem + "','" + Image + "')", con);
+            cmd = new SqlCommand("insert into Students values('" + Student_ID + "','" + First_Name + "','" + Last_Name + "','" + Program_id + "','" + CurrentSem + "','" + Image + "')", con);
             cmd.ExecuteNonQuery();
             string sqlIns = "INSERT INTO  login_Details (Email_ID, Password, Student_Id,Employee_Id) VALUES (@email_id, @password, @student_id, @employee_id)";
 
@@ -107,16 +107,10 @@ public class Student
             cmdIns.Parameters.Add(param4);
             cmdIns.ExecuteNonQuery();
             con.Close();
-
         }
-
-
-
         catch (Exception ex)
         {
             throw new Exception(ex.ToString(), ex);
         }
-
-
     }
 }

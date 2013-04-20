@@ -7,23 +7,23 @@ using System.Web.UI.WebControls;
 
 public partial class WebUserControl : System.Web.UI.UserControl
 {
-
-    ronUtil2 get = new ronUtil2();
+    Util get = new Util();
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
+
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)
     {
-      
+
     }
 
     protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
     {
 
-        int id = Convert.ToInt16(Request.QueryString["AdvisorID"]); 
-        if (get.DaysAvailable==null)
-        {get = new ronUtil2(id);}
+        int id = Convert.ToInt16(Request.QueryString["AdvisorID"]);
+        if (get.DaysAvailable == null)
+        { get = new Util(id); }
 
         int length = get.DaysAvailable.Length;
         DayOfWeek[] days = new DayOfWeek[length];
@@ -41,12 +41,9 @@ public partial class WebUserControl : System.Web.UI.UserControl
 
         if (e.Day.Date > stratDate && e.Day.Date < endDate)
         {
-
-
             if (e.Day.IsWeekend)
             {
                 e.Day.IsSelectable = false;
-
             }
             else
             {
@@ -111,40 +108,26 @@ public partial class WebUserControl : System.Web.UI.UserControl
                         e.Cell.Font.Size = 8;
                     }
                 }
-
-
-
-
             }
         }
-
     }
-
-
-
-
-
-
-
-
-
 
 
     protected void cmd(object sender, EventArgs e)
     {
-
         Session["date"] = Calendar1.SelectedDate.ToString("MM/dd/yyyy");
         if (Calendar1.SelectedDate.Date < DateTime.Now)
-        { Server.Transfer("Schedule.aspx"); }
+        { 
+            Server.Transfer("ViewScheduleCalendar.aspx"); 
+        }
         else
         {
-            Server.Transfer("~/Confirm.aspx?AdvisorID=" + Session["AdvisorID"].ToString() + "&bookingDate=" + Calendar1.SelectedDate.ToString("MM/dd/yyyy"));
+            Server.Transfer("~/MakeAppointment.aspx?AdvisorID=" + Session["AdvisorID"].ToString() + "&bookingDate=" + Calendar1.SelectedDate.ToString("MM/dd/yyyy"));
         }
-
     }
+
     protected void Calendar1_DayRender(object sender, EventArgs e)
     {
 
     }
-
 }

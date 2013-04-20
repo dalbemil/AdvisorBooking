@@ -82,6 +82,8 @@ public partial class AdvisorRegistration : System.Web.UI.Page
             "MessageBox",
             "alert('Advisor File saved succesffuly');",
             true);
+
+            Response.Redirect("UserLogin.aspx");
         }
 
         catch (Exception ex)

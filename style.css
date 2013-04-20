@@ -17,13 +17,15 @@ body {
 
 h1, h2, h3, h4 {
 	margin: 0;
+    height: 26px;
 }
 
 img {
 	border: 0;
 }
 
-.clear {
+.clear 
+{
 	clear: both;
 	height: 0;
 	overflow: hidden;
@@ -32,55 +34,83 @@ img {
 
 /* Page */
 
-#page {
+#page 
+{
 	margin: 0 auto;
-	width: 1004px;
+	width: 1028px;
 	background: url("images/page.jpg") repeat-y;
 }
 
-#page-top {
-	width: 1004px;
+#page-top 
+{
+	width: 1028px;
 	background: url("images/page_top.jpg") no-repeat;
 }
 
-#page-bottom {
-	width: 1004px;
+#page-bottom 
+{
+	width: 1028px;
 	min-height: 555px;
 	background: url("images/page_bottom.png") no-repeat left bottom;
 }
 
+#page-login 
+{
+	margin: 0 auto;
+	width: 1004px;
+	background: url("images/login_page.jpg") repeat-y;
+}
+
+#page-login-top 
+{
+	width: 1004px;
+	background: url("images/page_top.jpg") no-repeat;
+}
+
+#page-login-bottom 
+{
+	width: 1004px;
+	min-height: 730px;
+	background: url("images/page_LogIn_bottom.jpg") no-repeat left bottom;
+}
 
 /* Header */
 
-#header {
-	width: 1004px;
+#header 
+{
+	width: 1028px;
 	height: 394px;
 	position: relative;
+    top: 0px;
+    left: 0px;
 }
 
-	/* Header - Info */
+/* Header - Info */
+#header #header-info 
+{
+	position: absolute;
+	top: 293px;
+	left: 20px;
+}
 	
-	#header #header-info {
-		position: absolute;
-		top: 293px;
-		left: 20px;
-	}
+#header #header-info h1 
+{
+	color: #29303b;
+	font: normal 36px Verdana;
+	padding-bottom: 3px;
+}
 	
-	#header #header-info h1 {
-		color: #29303b;
-		font: normal 36px Verdana;
-		padding-bottom: 3px;
-	}
+#header #header-info h1 a 
+{
+	color: #29303b;
+	text-decoration: none;
+}
 	
-	#header #header-info h1 a {
-		color: #29303b;
-		text-decoration: none;
-	}
-	
-	#header #header-info .description {
-		color: #3b4802;
-		font: normal 18px Verdana;
-	}
+#header #header-info .description 
+{
+	color: #3b4802;
+	font: normal 18px Verdana;
+}
 	
 	/* Header - Menu */
 	
@@ -174,15 +204,16 @@ img {
 
 /* Main */
 
-#main {
-	width: 1004px;
+#main 
+{
+	width: 1028px;
 }
 
 	/* Main - Sidebar */
 	
 	#sidebar {
 		float: left;
-		width: 190px;
+		width: 187px;
 		font: normal 12px/18px Verdana;
 		color: #8b919b;
 		margin-top: 68px;
@@ -202,7 +233,7 @@ img {
 	
 	#sidebar #sidebar-left {
 		float: left;
-		width: 168px;
+		width: 203px;
 	}
 	
 	#sidebar #sidebar-right {
@@ -213,7 +244,7 @@ img {
 	/* Main - Sidebar - Boxes */
 	
 	#sidebar .sidebar-box {
-		width: 168px;
+		width: 201px;
 		margin-bottom: 10px;
 	}
 	
@@ -305,22 +336,76 @@ img {
 			padding: 0 1px;
 		}
 	
-	/* Main - Content */
+	/* Login - Content */
 	
-	#content {
+	
+	
+	#login-content 
+	{
 		float: left;
-		width: 759px;
-    height: 29px;
-}
-	
-	/* Main - Content - Post */
-	
-	#content .post {
+		width: 1004px;
+        height: auto;
+    }
+    
+    #login-content .postlogin 
+	{
 		float: left;
 		margin-bottom: 0px;
-		width: 709px;
-    height: 29px;
+		width: 981px;
+        height: 29px;
+    }
+    
+    #login-content .postlogin .postlogin-title 
+    {
+		width: 981px;
+		height: 32px;
+		color: #8da3a8;
+		font: normal 12px Verdana;
+		margin-bottom: 8px;
+		background: url("images/post_title.gif") repeat-x left bottom;
+	}
+	
+    #login-content .postlogin .postlogin-entry-top 
+    {
+	    background: url("images/post_login_top.jpg") no-repeat;
+		width: 350px;
+        height: 199px;
+    }
+			
+	#login-content .postlogin .postlogin-entry 
+	{
+	    font: normal 12px/20px Arial, Verdana;
+		color: #797f88;
+		width: 350px;
+		background: url("images/post_login.jpg") repeat-y;
+        height: 199px;
+        margin-left: 34px;
+    }
+		
+	#login-content  .postlogin .postlogin-entry-bottom 
+	{
+		background: url("images/post_login_bottom.jpg") no-repeat left bottom;
+		padding:  0px  0px 9px 6px;
+	    width: 350px;
+        height: 199px;
+    }
+		
+		
+	/* Main - Content - Post */
+	#content 
+	{
+		float: left;
+		width: 776px;
+        height: 29px;
+    margin-left: 10px;
 }
+	
+	#content .post 
+	{
+		float: left;
+		width: 788px;
+        height: 29px;
+    }
 	
 		/* Post - Title */
 		
@@ -414,13 +499,13 @@ img {
 		
 			#content .post .post-entry-top {
 				background: url("images/post_entry_top.jpg") no-repeat;
-				width: 759px;
+				width: 780px;
 			}
 			
 		#content .post .post-entry {
 			font: normal 12px/20px Arial, Verdana;
 			color: #797f88;
-			width: 759px;
+			width: 782px;
 			background: url("images/post_entry.jpg") repeat-y;
 		}
 		
@@ -429,7 +514,7 @@ img {
 			#content .post .post-entry-bottom {
 				background: url("images/post_entry_bottom.jpg") no-repeat left bottom;
 				padding:  0px  0px 9px 6px;
-				width: 759px;
+				width: 788px;
 			}
 		
 		#content .post .post-entry a {
@@ -563,7 +648,7 @@ img {
 /* Footer */
 
 #footer {
-	width: 590px;
+	width: 611px;
 	height: 36px;
 	padding: 5px 17px 37px 397px;
 	color: #4c576a;

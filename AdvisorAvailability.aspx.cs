@@ -13,13 +13,14 @@ public partial class AdvisorAvailability : System.Web.UI.Page
     //string SelectedDay = String.Empty;
     int gvEditIndex = -1;
     WebService GetSchedule = new WebService();
+    enum Days { Sunday = 1, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday }
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             this.lblAdvisorName.Text = Session["AdvisorName"].ToString();
-            this.lblAdvisorNumber.Text = Session["AdvisorNumber"].ToString();
+            this.lblAdvisorNumber.Text = Session["AdvisorID"].ToString();
 
             int WeeksInThisYear = GetSchedule.WeeksInYear(DateTime.Now.Year);
             for (int i = 1; i <= WeeksInThisYear; i++)
@@ -38,6 +39,7 @@ public partial class AdvisorAvailability : System.Web.UI.Page
         gvAdvisorSetSchedule.DataSource = DaysWithSlots;
         gvAdvisorSetSchedule.DataBind();
 
+        ControlsVisible(false); 
     }
 
     #region gvAdvisorSchedule
@@ -46,8 +48,8 @@ public partial class AdvisorAvailability : System.Web.UI.Page
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            string SelectedDay = (string)DataBinder.Eval(e.Row.DataItem, "Day");
-
+           string SelectedDay = (string)DataBinder.Eval(e.Row.DataItem, "Day");
+            
 
             if (!(String.IsNullOrEmpty(SelectedDay.Trim())))
             {
@@ -74,81 +76,6 @@ public partial class AdvisorAvailability : System.Web.UI.Page
                 DataTable dtDaySchedules = GetDailyAdvisorSchedule(SelectedDay);
                 gv.DataSource = GetDailyAdvisorSchedule(SelectedDay);
                 gv.DataBind();
-
-                //double MinutesPerSlot = 30;
-                //DataRow[] AvailableDays = (dtDaySchedules != null) ? dtDaySchedules.Copy().Select("Day='" + SelectedDay + "' AND IsDeleted=0") : null;
-
-                //foreach (GridViewRow gvr in gv.Rows)
-                //{
-                //    if (AvailableDays != null)
-                //    {
-                //        DateTime StartTime,
-                //                 EndTime,
-                //                 CurrentTime;
-                //        int TimeSlotTableIndex = 0;
-
-                //        foreach (DataRow days in AvailableDays)
-                //        {
-                //            List<String> lstAdvisorTimeSlots = new List<string>();
-                //            StartTime = Convert.ToDateTime(days["StartTime"].ToString());
-                //            EndTime = Convert.ToDateTime(days["EndTime"].ToString()).AddMinutes(-MinutesPerSlot);
-
-                //            CurrentTime = StartTime;
-                //            while (CurrentTime <= EndTime)
-                //            {
-                //                lstAdvisorTimeSlots.Add(CurrentTime.ToString("hh:mm tt"));
-                //                CurrentTime = CurrentTime.AddMinutes(MinutesPerSlot);
-                //            }
-
-                //            DateTime DayStartTime = Convert.ToDateTime("8:00 AM");
-                //            DateTime DayEndTime = Convert.ToDateTime("5:00 PM");
-                //            DayEndTime = DayEndTime.AddMinutes(-MinutesPerSlot);
-
-                //            CurrentTime = DayStartTime;
-                //            while (CurrentTime <= DayEndTime)
-                //            {
-                //                ListItem timeSlot = new ListItem(CurrentTime.ToString("hh:mm tt"));
-                //                ListItem timeEndSlot = new ListItem(CurrentTime.ToString("hh:mm tt"));
-
-                //                //if (ddtStartTime != null && ddtEndTime != null)
-                //                //{
-                //                //    if (!(ddtStartTime.Items.Contains(timeSlot)))
-                //                //    {
-                //                //        ddtStartTime.Items.Add(timeSlot);
-                //                //        ddtEndTime.Items.Add(timeEndSlot);
-                //                //    }
-                //                //}
-
-                //                TimeSlotTableIndex = lstAdvisorTimeSlots.IndexOf(CurrentTime.ToShortTimeString());
-                //                if (TimeSlotTableIndex == -1)
-                //                {
-                //                    //ListItem timeFooterSlot = new ListItem(CurrentTime.ToString("hh:mm tt"));
-                //                    //ListItem timeFooterEndSlot = new ListItem(CurrentTime.ToString("hh:mm tt"));
-
-                //                    //if (!(ddlFooterStartTime.Items.Contains(timeSlot)))
-                //                    //{
-                //                    //    ddlFooterStartTime.Items.Add(timeFooterSlot);
-                //                    //    ddlFooterEndTime.Items.Add(timeFooterEndSlot);
-                //                    //}
-                //                }
-
-                //                CurrentTime = CurrentTime.AddMinutes(MinutesPerSlot);
-                //            }
-                //        }
-
-                //        //if (ddtStartTime != null && ddtEndTime != null)
-                //        //{
-                //        //    string AdvisorScheduleID = ((Label)gv.Rows[gvEditIndex].Cells[1].FindControl("lblAdvisorScheduleID")).Text;
-                //        //    DataRow[] getScheduleTimes = dtSampleData.Copy().Select("AdvisorScheduleID=" + AdvisorScheduleID + "");
-
-                //        //    if (getScheduleTimes != null)
-                //        //    {
-                //        //        ddtStartTime.Text = Convert.ToDateTime(getScheduleTimes[0]["StartTime"].ToString()).ToString("hh:mm tt");
-                //        //        ddtEndTime.Text = Convert.ToDateTime(getScheduleTimes[0]["EndTime"].ToString()).ToString("hh:mm tt");
-                //        //    }
-                //        //}
-                //    }
-                //}
             }
         }
     }
@@ -165,7 +92,7 @@ public partial class AdvisorAvailability : System.Web.UI.Page
         {
             dtDaySchedule = null;
         }
-
+       
         return dtDaySchedule;
     }
 
@@ -232,10 +159,10 @@ public partial class AdvisorAvailability : System.Web.UI.Page
         lblDayName.Text = DaySelected;
         this.lblDate.Text = GetSchedule.DayInWeekDate(DaySelected, Convert.ToInt32(ddlWeek.Text.ToString()), Convert.ToInt32(ddlYear.Text.ToString())).ToString("dd-MMM-yyyy");
 
-        this.btnSave.Visible = (Convert.ToInt32(GetSchedule.WeekNumber(DateTime.Now).ToString()) > Convert.ToInt32(this.ddlWeek.SelectedValue.ToString().Trim())) ? true : false;
+        this.btnSave.Visible = (Convert.ToInt32(GetSchedule.WeekNumber(DateTime.Now).ToString()) > Convert.ToInt32(this.ddlWeek.SelectedValue.ToString().Trim())) ? true: false; 
         if (this.btnSave.Visible == true)
         {
-            this.btnSave.Visible = (DateTime.Now.Year >= Convert.ToInt32(this.ddlYear.SelectedValue.ToString().Trim())) ? false : true;
+            this.btnSave.Visible = (DateTime.Now.Year >= Convert.ToInt32(this.ddlYear.SelectedValue.ToString().Trim())) ? false: true; 
         }
 
         mpeScheduleMaintenance.Show(); //show the modal popup extender
@@ -298,10 +225,10 @@ public partial class AdvisorAvailability : System.Web.UI.Page
         lblDayName.Text = DaySelected;
         this.lblDate.Text = GetSchedule.DayInWeekDate(DaySelected, Convert.ToInt32(ddlWeek.Text.ToString()), Convert.ToInt32(ddlYear.Text.ToString())).ToString("dd-MMM-yyyy");
 
-        this.btnSave.Visible = (Convert.ToInt32(GetSchedule.WeekNumber(DateTime.Now).ToString()) > Convert.ToInt32(this.ddlWeek.SelectedValue.ToString().Trim())) ? false : true;
+        this.btnSave.Visible = (Convert.ToInt32(GetSchedule.WeekNumber(DateTime.Now).ToString()) > Convert.ToInt32(this.ddlWeek.SelectedValue.ToString().Trim())) ? false: true; 
         if (this.btnSave.Visible == true)
         {
-            this.btnSave.Visible = (DateTime.Now.Year >= Convert.ToInt32(this.ddlYear.SelectedValue.ToString().Trim())) ? true : false;
+            this.btnSave.Visible = (DateTime.Now.Year >= Convert.ToInt32(this.ddlYear.SelectedValue.ToString().Trim())) ? true: false; 
         }
 
         mpeScheduleMaintenance.Show(); //show the modal popup extender
@@ -325,7 +252,7 @@ public partial class AdvisorAvailability : System.Web.UI.Page
             {
                 if (((Int32)drSchudule["AdvisorScheduleID"] == AdvisorScheduleID) && (drSchudule["Day"].ToString() == DaySelected))
                 {
-                    // drSchudule.Delete();
+                   // drSchudule.Delete();
                     drSchudule["IsDeleted"] = true;
                     drSchudule["IsNew"] = false;
                     drSchudule["IsAltered"] = false;
@@ -371,7 +298,7 @@ public partial class AdvisorAvailability : System.Web.UI.Page
                 newAdvisorSchedule["Day"] = this.lblDayName.Text;
                 newAdvisorSchedule["StartTime"] = Convert.ToDateTime(StartTime).ToString("H:mm:ss");
                 newAdvisorSchedule["EndTime"] = Convert.ToDateTime(EndTime).ToString("H:mm:ss");
-                newAdvisorSchedule["Week"] = this.ddlWeek.Text;
+                newAdvisorSchedule["Week"] = this.ddlWeek.Text; 
                 newAdvisorSchedule["Year"] = this.ddlYear.Text;
                 newAdvisorSchedule["AdvisorScheduleID"] = "-1";
                 newAdvisorSchedule["IsDeleted"] = false;
@@ -547,25 +474,6 @@ public partial class AdvisorAvailability : System.Web.UI.Page
         }
     }
 
-    private void ControlsVisible(bool isEnabled)
-    {
-        foreach (GridViewRow row in gvAdvisorSetSchedule.Rows)
-        {
-            ((Button)row.FindControl("btnNewSchedule")).Visible = isEnabled;
-
-            //Find Child GridView control
-            GridView gv = new GridView();
-            gv = (GridView)row.FindControl("gvTimeSlotsAvailable");
-
-            foreach (GridViewRow gvr in gv.Rows)
-            {
-                // Selects the text from the TextBox which is inside the GridView control
-                ((ImageButton)gvr.FindControl("btnEditSchedule")).Visible = isEnabled;
-                ((ImageButton)gvr.FindControl("btnDeleteSchedule")).Visible = isEnabled;
-            }
-        }
-    }
-
     protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (Session["Year"].ToString().Trim() != this.ddlYear.SelectedValue.ToString().Trim())
@@ -573,10 +481,63 @@ public partial class AdvisorAvailability : System.Web.UI.Page
             Session["AdvisorSchedules"] = null;
             gvAdvisorSetSchedule.DataSource = DaysWithSlots;
             gvAdvisorSetSchedule.DataBind();
+
+            if (DateTime.Now.Year >= Convert.ToInt32(this.ddlYear.SelectedValue.ToString().Trim()))
+            {
+                ControlsVisible(false);
+            }
+            else
+            {
+                ControlsVisible(true);
+            }
         }
     }
 
+    private void ControlsVisible(bool isEnabled)
+    {
+        foreach (GridViewRow row in gvAdvisorSetSchedule.Rows)
+        {
+            //Find Child GridView control
+            GridView gv = new GridView();
+            gv = (GridView)row.FindControl("gvTimeSlotsAvailable");
 
-    #endregion
+            int YearSelected = Convert.ToInt32(this.ddlYear.SelectedValue.ToString().Trim());
+            int WeekSelected = Convert.ToInt32(this.ddlWeek.SelectedValue.ToString().Trim());
+            int CurrentWeek = Convert.ToInt32(GetSchedule.WeekNumber(DateTime.Now).ToString());
 
+            int DayOfWeekCounter = (int)Enum.Parse(typeof(DayOfWeek), ((Label)(row.FindControl("lblDay"))).Text, true);
+
+            foreach (GridViewRow gvr in gv.Rows)
+            {
+                //Check if we are in the current year and week
+                if ((DateTime.Now.Year == YearSelected) &&
+                     (CurrentWeek == WeekSelected))
+                {
+                    //Check the day of week of the current year and week
+                    if (DayOfWeekCounter >= (int)DateTime.Now.DayOfWeek)
+                    {
+                        ((Button)row.FindControl("btnNewSchedule")).Visible = true;
+                        ((ImageButton)gvr.FindControl("btnEditSchedule")).Visible = true;
+                        ((ImageButton)gvr.FindControl("btnDeleteSchedule")).Visible = true;
+
+                    }
+                    else
+                    {
+                        ((Button)row.FindControl("btnNewSchedule")).Visible = false;
+                        ((ImageButton)gvr.FindControl("btnEditSchedule")).Visible = false;
+                        ((ImageButton)gvr.FindControl("btnDeleteSchedule")).Visible = false;
+                    }
+                }
+                else
+                {
+                    ((Button)row.FindControl("btnNewSchedule")).Visible = isEnabled;
+                    ((ImageButton)gvr.FindControl("btnEditSchedule")).Visible = isEnabled;
+                    ((ImageButton)gvr.FindControl("btnDeleteSchedule")).Visible = isEnabled;
+                }
+            }
+        }
+    }
+
+    #endregion    
+   
 }

@@ -101,10 +101,6 @@ public partial class AdvisorSchedule : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            Session["AdvisorName"] = "Emily Davis";
-            Session["AdvisorNumber"] = "103";
-
-            //merge the second, third and fourth columns with common title "Subjects"
             info.AddMergedColumns(new int[] { 2, 3}, "8:00 AM");
             info.AddMergedColumns(new int[] { 4, 5 }, "9:00 AM");
             info.AddMergedColumns(new int[] { 6, 7 }, "10:00 AM");
@@ -129,12 +125,10 @@ public partial class AdvisorSchedule : System.Web.UI.Page
             this.ddlYear.Text = DateTime.Now.Year.ToString();
 
             this.lblAdvisorName.Text = Session["AdvisorName"].ToString();
-            this.lblAdvisorNumber.Text = Session["AdvisorNumber"].ToString();
+            this.lblAdvisorNumber.Text = Session["AdvisorID"].ToString();
 
-            gvAdvisorSchedule.DataSource = DaysWithSlots;// AdvisorWeekSchedulesData;
+            gvAdvisorSchedule.DataSource = DaysWithSlots;
             gvAdvisorSchedule.DataBind();
-         
-            //GetAdvisorSchedule(this.lblAdvisorNumber.Text);
         }
     }
 

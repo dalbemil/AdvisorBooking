@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdvisorBookingServiceMasterPage.master"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdvisorMasterPage.master"
     AutoEventWireup="true" CodeFile="AdvisorAvailability.aspx.cs" Inherits="AdvisorAvailability"
     EnableEventValidation="false" ValidateRequest="false" %>
 
@@ -14,10 +14,10 @@
             </div>
             <div class="post-entry-top">
                 <div class="post-entry-bottom">
-                    <asp:ScriptManager ID="ScriptManager1" runat="server" />
-                    <asp:UpdatePanel ID="upnlAdvisorSchedule" runat="server" UpdateMode="Conditional">
+                    <asp:ScriptManager ID="smAdvisorAvailability" runat="server" />
+                    <asp:UpdatePanel ID="upnlAdvisorAdvailability" runat="server" UpdateMode="Conditional">
                         <ContentTemplate>
-                            <table style="width: 100%" border="1">
+                            <table style="width: 757px" border="1">
                                 <tr>
                                     <td align="center">
                                         Year:
@@ -30,9 +30,19 @@
                                     <td align="center">
                                         Week
                                     </td>
-                                    <td align="left">
-                                        <asp:DropDownList ID="ddlWeek" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged">
+                                    <td align="left" style="width: 270px; vertical-align:middle" >
+                                        <asp:DropDownList ID="ddlWeek" runat="server" AutoPostBack="true" 
+                                            OnSelectedIndexChanged="ddlWeek_SelectedIndexChanged" Visible="False">
                                         </asp:DropDownList>
+                                        <asp:TextBox ID="txtWeekNumber" runat="server" Text="0" Width="27px" 
+                                            Style="text-align: center" />
+                                        <asp:ImageButton ID="ibtnDownNumber" runat="server" ImageUrl="~/images/down.gif"
+                                            AlternateText="Down" Width="15" Height="10px" />
+                                        <asp:ImageButton ID="ibtnUpNumber" runat="server" ImageUrl="~/images/up.gif" AlternateText="Up"
+                                            Width="15" Height="10px" />
+                                        <ajaxToolkit:NumericUpDownExtender ID="nudWeekNumber" runat="server" TargetControlID="txtWeekNumber"
+                                            Width="120" RefValues="" ServiceDownMethod="" ServiceUpMethod="" TargetButtonDownID="ibtnDownNumber"
+                                            TargetButtonUpID="ibtnUpNumber" Minimum="1" Maximum="52" />
                                     </td>
                                     <td style="width: 201px" align="right">
                                         Advisor Number:
@@ -264,7 +274,7 @@
                                 <tr>
                                     <td align="center" colspan="8">
                                         <asp:Button ID="btnSave" runat="server" Text="Save Schedule" Width="132px" Font-Bold="True"
-                                            OnClick="btnSave_Click" OnClientClick="javascript:return confirm('Are you sure you want to save this Schedule?');"/>
+                                            OnClick="btnSave_Click" OnClientClick="javascript:return confirm('Are you sure you want to save this Schedule?');" />
                                         <input id="btnReset" style="width: 124px" type="reset" value="Reset" />
                                     </td>
                                 </tr>
